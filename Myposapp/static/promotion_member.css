@@ -1,0 +1,62 @@
+.flex-container {
+    display: flex;
+    background-color: black;
+    height : 100% ;
+    flex-direction:row;
+}
+.flex-container2 {
+    display: flex;
+    /* background-color: DodgerBlue; */
+    height : 100% ;
+    width :100%;
+    flex-direction:column;
+}
+.passport-box{
+	display: none
+}
+
+.addpromotionbn {
+    background-color: #559fe4;
+    color:  #FFFFFF;
+    border: none;
+    width:  80%;
+    height:  90%;
+    border-radius: 50px;
+    font-family:Baloo;
+    font-size:15px;
+    transition-duration: 0.4s;
+  }
+  
+  .addpromotionbn:hover {
+    background-color:  #556ae4;
+    color: white;
+    width:  80%;
+    height: 90%;
+    border-radius: 50px;
+    box-shadow: 0 5px 5px 0 rgba(153, 153, 153, 0.24),0 5px 5px 0 rgba(153, 153, 153, 0.24);
+    font-family:Baloo;
+    font-size:15px;
+  }
+  .historybn {
+    background-color: #c5c5c5;
+    color:  #525252;
+    border-width: 1px;
+    width:  80%;
+    height:  85%;
+    border-radius: 50px;
+    font-family:Baloo;
+    font-size:15px;
+    transition-duration: 0.4s;
+  }
+  
+  .historybn:hover {
+    background-color: #838383;
+    color: white;
+    border: none;
+    width:  80%;
+    height:  85%;
+    border-radius: 50px;
+    box-shadow: 0 5px 5px 0 rgba(153, 153, 153, 0.24),0 5px 5px 0 rgba(153, 153, 153, 0.24);
+    font-family:Baloo;
+    font-size:15px;
+  }

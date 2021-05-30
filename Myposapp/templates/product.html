@@ -1,0 +1,59 @@
+{% extends 'layout_admin.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" type="text/css"  href="{% static 'product.css' %}">
+
+<div class = 'flex-container'>
+  <div class="left">
+      <div class="head1" style="flex-direction: row;">
+        <form action="/product/search/">
+        {% csrf_token %}
+        <div class = "head1">
+          <span style="font-family: Baloo; font-size: 20">Search </span>        
+          <input type="text" class="form-control " style="width:700px; height: 40px; margin-left: 10px;" name = "Barcode">
+          <button type="submit" class="btn btn-primary" style="height: 35px ;width :35px ;border: none; margin-left: 10px; border-radius: 17.5px; background: url(https://media.discordapp.net/attachments/807134152011939850/812019766620848209/ss.png)"></button>
+        </div>
+        </form>
+        <a href="/product/add_product/">
+        <button type="button"  class="btn btn-success btn-rounded" style="font-family: Baloo; margin-left: 200px; width: 150px; border-radius: 50px; background-color: #4F7BBC; border: none">Add +</button>
+        </a>
+      </div>
+      <div class="head2" style="padding-top: 0px ;overflow: auto; margin-top:  30px;">
+        <table class="table table-hover" style="font-family: Baloo; ">
+            <thead>
+              <tr style="font-size: 18px; text-align: center; ">
+                <th scope="col" >Barcode</th>
+                <th scope="col"class='font'>Product Name</th>
+                <th scope="col">Price</th>
+                <th scope="col-sm"></th>
+                <th scope="col-sm"></th>
+              </tr>
+            </thead>
+            <tbody  style="font-size: 15px; color: #8E8C8C; text-align: center; margin-right: 0%;">
+             {% for i in data %} 
+             <a href="/">
+               <tr>
+                 {% if i.status == 1 %}
+                  <th scope="row">{{i.Barcode_ID}}</th>
+                  <td>{{i.Name}}</td>
+                  <td>{{i.Price}}</td>
+                  <td ><button onclick = "location.href='/product/edit_product/{{i.id}}/'" class="btn btn-primary" type="button">edit</button></td>
+                  <td ><button class="btn btn-danger" onclick = "location.href='/product/del_product/{{i.id}}/'" type="button">delete</button></td>
+                  {% endif %}
+              </tr>
+            </a>
+              {% endfor %}
+            </tbody>
+          </table>
+      </div>
+  </div>
+
+</div>
+<script>
+  function del(i)
+  { 
+
+  }
+</script>
+{% endblock %}

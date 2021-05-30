@@ -1,0 +1,400 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Employee</title>
+    <meta name="description" content="Figma htmlGenerator" />
+    <meta name="author" content="htmlGenerator" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Baloo&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+
+    <link
+      href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+      rel="stylesheet"
+      id="bootstrap-css"
+    />
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+    <link rel="stylesheet" href="style.css" />
+    <style></style>
+  </head>
+
+  <body>
+    <div class="flex-container">
+      <div id="tab"></div>
+
+      <div id="space">
+        <div id="blank"></div>
+
+        <div id="center">
+          <div id="left">
+            <div class="container">
+              <form
+                action="/regis/"
+                method='POST'
+                class="form-inline"
+                style="margin-top: 100%; margin-left: 18%;"
+              > {% csrf_token %}
+                <img src="empic.jpg" height="20%" />
+                <input
+                  type="file"
+                  class="form-control"
+                  id="customFile"
+                  style="width: 175px; margin-left: -5%;"
+                />
+              </form>
+            </div>
+          </div>
+          <div id="right">
+            <div id="line">
+              <form class="form-inline" style="margin-left: 0.5%;">
+                <span for="inputID" class="form-label">ID Card Number :</span>
+                <input type="text" class="form-control" style="width: 175px;" />
+              </form>
+            </div>
+
+            <div id="line">
+              <div class="container">
+                <form class="form-inline" style="margin-left: -20%;">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="inlineRadioOptions"
+                    value="option1"
+                  />
+                  <label class="form-check-label" for="inlineRadio1">Mr.</label>
+
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="inlineRadioOptions"
+                    value="option2"
+                    style="margin-left: 1%;"
+                  />
+                  <label class="form-check-label" for="inlineRadio2">
+                    Mrs.
+                  </label>
+
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="inlineRadioOptions"
+                    value="option3"
+                    style="margin-left: 1%;"
+                  />
+                  <label class="form-check-label" for="inlineRadio2">Ms.</label>
+
+                  <label class="form-label" style="margin-left: 3%;">
+                    First Name :
+                  </label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="validationCustom01"
+                    style="width: 175px; margin-left: 1%;"
+                    required
+                  />
+
+                  <label class="form-label" style="margin-left: 3%;">
+                    Last Name :
+                  </label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="validationCustom02"
+                    style="width: 175px; margin-left: 1%;"
+                    required
+                  />
+
+                  <label class="form-label" style="margin-left: 3%;">
+                    Age :
+                  </label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="validationCustom02"
+                    style="width: 175px; margin-left: 1%;"
+                    required
+                  />
+                </form>
+              </div>
+            </div>
+
+            <div id="line">
+              <div class="container">
+                <form class="form-inline" style="margin-left: -20%;">
+                  <label class="form-label">Gender :</label>
+
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="inlineRadioOptions"
+                    value="option1"
+                    style="margin-left: 1%;"
+                  />
+                  <label class="form-check-label" for="inlineRadio2">
+                    Male
+                  </label>
+
+                  <input
+                    type="radio"
+                    name="inlineRadioOptions"
+                    value="option2"
+                    style="margin-left: 1%;"
+                  />
+                  <label class="form-check-label" for="inlineRadio2">
+                    Female
+                  </label>
+
+                  <label class="form-label" style="margin-left: 3%;">
+                    Email :
+                  </label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    style="margin-left: 1%;"
+                  />
+
+                  <label class="form-label" style="margin-left: 3%;">
+                    Phone Number :
+                  </label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    style="margin-left: 1%;"
+                    name="phonenumber"
+                  />
+
+                  <label class="form-label" style="margin-left: 3%;">
+                    Blood type :
+                  </label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    style="margin-left: 1%;"
+                  />
+                </form>
+              </div>
+            </div>
+
+            <div id="line">
+              <div class="container">
+                <form class="form-inline" style="margin-left: -20%;">
+                  <label for="birthday">Date of Birth :</label>
+                  <input
+                    type="date"
+                    id="birthday"
+                    name="birthday"
+                    style="margin-left: 1%;"
+                  />
+
+                  <label class="form-label" style="margin-left: 3%;">
+                    Ethnity :
+                  </label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    style="margin-left: 1%;"
+                  />
+
+                  <label class="form-label" style="margin-left: 3%;">
+                    Nationality :
+                  </label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    style="margin-left: 1%;"
+                  />
+
+                  <label class="form-label" style="margin-left: 3%;">
+                    Religion :
+                  </label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    style="margin-left: 1%;"
+                  />
+                </form>
+              </div>
+            </div>
+
+            <div id="doubleline">
+              <div class="container">
+                <form class="form-inline" style="margin-left: -20%;">
+                  <label class="form-label" style="margin-top: -5%;">
+                    Present Address :
+                  </label>
+                  <textarea
+                    class="form-control"
+                    rows="5"
+                    style="
+                      margin-left: 1%;
+                      margin-top: 1%;
+                      width: 800px;
+                      height: 100px;
+                    "
+                  ></textarea>
+                </form>
+              </div>
+            </div>
+
+            <div id="line">
+              <div class="container">
+                <form class="form-inline" style="margin-left: -20%;">
+                  <label for="inputID" class="form-label">
+                    Marital Status :
+                  </label>
+
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="inlineRadioOptions"
+                    value="option1"
+                    style="margin-left: 1%;"
+                  />
+                  <label class="form-check-label" for="inlineRadio1">
+                    Single
+                  </label>
+
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="inlineRadioOptions"
+                    value="option2"
+                    style="margin-left: 1%;"
+                  />
+                  <label class="form-check-label" for="inlineRadio2">
+                    Seperated
+                  </label>
+
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="inlineRadioOptions"
+                    value="option3"
+                    style="margin-left: 1%;"
+                  />
+                  <label class="form-check-label" for="inlineRadio2">
+                    Engaged
+                  </label>
+
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="inlineRadioOptions"
+                    value="option4"
+                    style="margin-left: 1%;"
+                  />
+                  <label class="form-check-label" for="inlineRadio2">
+                    Married
+                  </label>
+
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="inlineRadioOptions"
+                    value="option5"
+                    style="margin-left: 1%;"
+                  />
+                  <label class="form-check-label" for="inlineRadio2">
+                    Widowed
+                  </label>
+
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="inlineRadioOptions"
+                    value="option6"
+                    style="margin-left: 1%;"
+                  />
+                  <label class="form-check-label" for="inlineRadio2">
+                    Divorced
+                  </label>
+                </form>
+              </div>
+            </div>
+            <div id="line">
+              <div class="container">
+                <form class="form-inline" style="margin-left: -20%;">
+                  <label
+                    for="inputEmail4"
+                    class="form-label"
+                    style="margin-left: 1%;"
+                  >
+                    Education Level :
+                  </label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    style="margin-left: 1%;"
+                  />
+
+                  <label
+                    for="inputPassword4"
+                    class="form-label"
+                    style="margin-left: 1%;"
+                  >
+                    Emergency Tel. :
+                  </label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    style="margin-left: 1%;"
+                  />
+
+                  <label
+                    for="inputPassword4"
+                    class="form-label"
+                    style="margin-left: 1%;"
+                  >
+                    Relationship :
+                  </label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    style="margin-left: 1%;"
+                  />
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="blank"></div>
+      </div>
+
+      <div id="block">
+        <div id="halfleft" class="container">
+          <div class="cont">
+            <form class="form-inline">
+              <button type="button" class="btn btn-danger btn-rounded">
+                Cancle
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <div id="halfright" class="container">
+          <div class="cont">
+            <form class="form-inline">
+              <button
+                type="button"
+                class="btn btn-success btn-rounded"
+                style="margin-right: -50%;"
+              >
+                Next
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,308 @@
+{% extends 'layout_admin.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Baloo">
+
+<style>
+    .bg2
+    {
+        /* background-color : #D6D6D6; */
+        background-color : #ffffff;
+        width:100%;
+        height:14%;
+        display: flex;
+        flex-direction:  row; 
+    }
+    .bg3
+    {
+        
+        /* background-color : #D6D6D6; */
+        background-color : #D6D6D6;
+        border-radius: 60px;
+        width:90%;
+        height:96%;
+        display: flex;
+        flex-direction:  column; 
+        margin-left: 55px;
+        /* display: none; */
+    }
+    
+     .buttond
+    {
+        font-family:"Baloo";
+        background-color:#DE6D6D;
+        border:none;
+        width:10%;
+        height:46%;
+        border-radius: 20px;
+        font-size: 20px;
+        color:#ffffff;
+        box-shadow: 0 5px 5px 0 #9999993d,0 5px 5px 0 rgba(153, 153, 153, 0.24);
+    } 
+    .buttond:hover 
+    {
+        box-shadow:0 0 20px #4DA3FF;
+      }
+    
+    .bg4
+    {
+        background-color : #D6D6D6;
+        width:98%;
+        height:33%;
+        display: flex;
+        flex-direction:  row; 
+        margin-top: 13px;
+        margin-left: 7px;
+        border-radius: 30px;
+    }
+    .bg5
+    {
+        background-color : #ffffff;
+        border-radius: 60px;
+        width:37%;
+        height:100%;
+        display: flex;
+        flex-direction:  column; 
+        margin-left: 9px;
+    }
+    .bg6
+    {
+        background-color : #ffffff;
+        border-radius: 60px;
+        width:64%;
+        height:100%;
+        display: flex;
+        flex-direction:  column; 
+        margin-left: 19px;
+    }
+    .bg7
+    {
+        background-color : #ffffff;
+        border-radius: 60px;
+        width:97.5%;
+        height:60%;
+        display: flex;
+        flex-direction:  column; 
+        margin-top: 17px;
+        margin-left: 16px;
+    }
+    .text
+    {
+        font-size: 20px;
+        font-family: "Baloo";
+        color:#8E8C8C ;
+    }
+
+    </style>
+
+
+
+<!-- 
+<div class=bg2>
+    <button onclick="location.href='/sales_report/day/'" class="buttond" data-radio="day" style="margin-left:20%;"  >Day</button> 
+    <button onclick="location.href='/sales_report/month/'" class="buttond" data-radio="month" style="margin-left:15%;" >Month</button>
+    <button onclick="location.href='/sales_report/years/'" class="buttond" data-radio="years" style="margin-left:15%;" >Years</button>
+
+</div> -->
+<div class="content">
+    <div class=bg3>
+      
+        <div class=bg4>
+            <div class=bg5 style="display: flex; flex-direction: row;">
+                <!-- <label class="text" style=" margin-top: 7%;margin-left: 8%;">Transaction <span></label>
+                <label class="text"style="margin-top: 4%;margin-left: 8%;">Sales</label>
+                <label class="text" style="margin-top: 4%;margin-left: 8%;">Profits</label> -->
+                <div style="width: 50%;height: 100%;">
+                  <label class="text" style=" margin-top: 14%;margin-left: 18%;">Transaction </label><br>
+                  <label class="text"style="margin-top: 8%;margin-left: 18%;">Sales</label><br>
+                  <label class="text" style="margin-top: 8%;margin-left: 18%;">Profits</label>
+              </div>
+                <div style="width: 50%;height: 100%; text-align: right;">
+                  <label class="text" style=" margin-top: 14%;margin-right: 24%; ">{{total_bill}} </label><br>
+                  <label class="text"style="margin-top: 8%;margin-right: 24%;">{{total_quantity}}</label><br>
+                  <label class="text" style="margin-top: 8%;margin-right:24%;">{{total_profit}}</label>
+                </div>
+            </div>
+            <div class=bg6>
+
+                <label class="text"style="margin-top: 2%;margin-left: 3%;position: absolute;font-size: 18px;">Best Seller of the year</label>
+                
+                <input type="text" name="pname3[]" value={{value_top.0}} hidden  />
+                <input type="text" name="pname3[]" value={{value_top.1}} hidden />
+                <input type="text" name="pname3[]" value={{value_top.2}} hidden />
+                <input type="text" name="pname3[]" value={{value_top.3}} hidden />
+                <input type="text" name="pname3[]" value={{value_top.4}} hidden />
+
+
+                <span type="text" id="top1" hidden  >{{datatop.0}}</span>
+                <span type="text" id="top2" hidden  >{{datatop.1}}</span>
+                <span type="text" id="top3" hidden  >{{datatop.2}}</span>
+                <span type="text" id="top4" hidden  >{{datatop.3}}</span>
+                <span type="text" id="top5" hidden  >{{datatop.4}}</span>
+
+                <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+                <script type="text/javascript">
+
+                var t1 = $("#top1").text()
+                var t2 = $("#top2").text()
+                var t3 = $("#top3").text()
+                var t4 = $("#top4").text()
+                var t5 = $("#top5").text()
+                
+
+
+                var data_top = $("input[name='pname3[]']").map(function(){return $(this).val();}).get();
+                var top1= parseInt(data_top[0]);
+                var top2= parseInt(data_top[1]);
+                var top3= parseInt(data_top[2]);
+                var top4= parseInt(data_top[3]);
+                var top5= parseInt(data_top[4]);
+                // console.log(top3)
+                google.charts.load("current", {packages:["corechart"]});
+                google.charts.setOnLoadCallback(drawChart);
+                function drawChart() 
+                {
+                  
+                  var data2 = google.visualization.arrayToDataTable([
+                  ['Task', 'Hours per Month'],
+                  [t1,top1],
+                  [t2,top2],
+                  [t3,top3],
+                  [t4,top4],
+                  [t5,top5]]);
+            
+                    var options2 ={
+                      backgroundColor: 'transparent',
+                      is3D: true,
+                    };
+            
+                    var chart2 = new google.visualization.PieChart(document.getElementById('chart_pie'));
+                    chart2.draw(data2, options2);
+                  }
+                </script>
+                  <body> 
+                    <div id="chart_pie" style="width: 100%; height: 100%;margin-left: 90px;"></div>
+                  </body>
+            </div>
+        </div>
+
+        <!-- กราฟเส้น -->
+        <div class=bg7>
+
+          <input type="text" name="pname1[]" value="{{datapy1.0}}" hidden />
+          <input type="text" name="pname1[]" value="{{datapy1.1}}" hidden />
+          <input type="text" name="pname1[]" value="{{datapy1.2}}" hidden />
+          <input type="text" name="pname1[]" value="{{datapy1.3}}" hidden />
+          <input type="text" name="pname1[]" value="{{datapy1.4}}" hidden />
+          <input type="text" name="pname1[]" value="{{datapy1.5}}"  hidden/>
+          <input type="text" name="pname1[]" value="{{datapy1.6}}"  hidden/>
+          <input type="text" name="pname1[]" value="{{datapy1.7}}"  hidden/>
+          <input type="text" name="pname1[]" value="{{datapy1.8}}"  hidden/>
+          <input type="text" name="pname1[]" value="{{datapy1.9}}"  hidden/>
+          <input type="text" name="pname1[]" value="{{datapy1.10}}" hidden />
+          <input type="text" name="pname1[]" value="{{datapy1.11}}" hidden />
+
+          <input type="text" name="pname2[]" value="{{datapy2.0}}"  hidden/>
+          <input type="text" name="pname2[]" value="{{datapy2.1}}" hidden />
+          <input type="text" name="pname2[]" value="{{datapy2.2}}" hidden />
+          <input type="text" name="pname2[]" value="{{datapy2.3}}" hidden />
+          <input type="text" name="pname2[]" value="{{datapy2.4}}" hidden />
+          <input type="text" name="pname2[]" value="{{datapy2.5}}"  hidden/>
+          <input type="text" name="pname2[]" value="{{datapy2.6}}"  hidden/>
+          <input type="text" name="pname2[]" value="{{datapy2.7}}"  hidden/>
+          <input type="text" name="pname2[]" value="{{datapy2.8}}"  hidden/>
+          <input type="text" name="pname2[]" value="{{datapy2.9}}"  hidden/>
+          <input type="text" name="pname2[]" value="{{datapy2.10}}" hidden />
+          <input type="text" name="pname2[]" value="{{datapy2.11}}" hidden />
+
+
+        
+          <!-- <input type="text" name="pname[]" value={{data.1}} hidden /> -->
+
+
+
+          <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+          <script type="text/javascript">
+
+
+        google.charts.load('current', {packages: ['corechart', 'line']});
+        google.charts.setOnLoadCallback(drawCurveTypes);
+
+              
+        
+        function drawCurveTypes() {
+              var data1 = new google.visualization.DataTable();
+              data1.addColumn('number', 'X');
+              data1.addColumn('number', 'Sales');
+              data1.addColumn('number', 'Profits');
+
+              var values = $("input[name='pname1[]']").map(function(){return $(this).val();}).get();
+              var total_s1= parseInt(values[0]);
+              var total_s2= parseInt(values[1]);
+              var total_s3= parseInt(values[2]);
+              var total_s4= parseInt(values[3]);
+              var total_s5= parseInt(values[4]);
+              var total_s6= parseInt(values[5]);
+              var total_s7= parseInt(values[6]);
+              var total_s8= parseInt(values[7]);
+              var total_s9= parseInt(values[8]);
+              var total_s10= parseInt(values[9]);
+              var total_s11= parseInt(values[10]);
+              var total_s12= parseInt(values[11]);
+
+              var valuep = $("input[name='pname2[]']").map(function(){return $(this).val();}).get();
+              var total_p1= parseInt(valuep[0]);
+              var total_p2= parseInt(valuep[1]);
+              var total_p3= parseInt(valuep[2]);
+              var total_p4= parseInt(valuep[3]);
+              var total_p5= parseInt(valuep[4]);
+              var total_p6= parseInt(valuep[5]);
+              var total_p7= parseInt(valuep[6]);
+              var total_p8= parseInt(valuep[7]);
+              var total_p9= parseInt(valuep[8]);
+              var total_p10= parseInt(valuep[9]);
+              var total_p11= parseInt(valuep[10]);
+              var total_p12= parseInt(valuep[11]);
+              data1.addRows([
+                [0, 0, 0],   
+                [1,total_s1,total_p1],   
+                [2,total_s2,total_p2],  
+                [3,total_s3,total_p3],   
+                [4,total_s4,total_p4],  
+                [5,total_s5,total_p5],
+                [6,total_s6,total_p6],   
+                [7,total_s7,total_p7],  
+                [8,total_s8,total_p8],  
+                [9,total_s9,total_p9],  
+                [10,total_s10,total_p10], 
+                [11,total_s11,total_p11],
+                [12,total_s12,total_p12]]);
+        
+              var options1 = {
+                backgroundColor: 'transparent',
+                hAxis: {
+                  title: 'Month'
+                },
+                vAxis: {
+                  title: 'Value'
+                },
+                series: {
+                  1: {curveType: 'function'}
+                }
+              };
+        
+              var chart1 = new google.visualization.LineChart(document.getElementById('chart_div'));
+              chart1.draw(data1, options1);
+            }
+            </script>
+          </head>
+          <body> 
+            <div id="chart_div" style="width: 100%; height: 100%;margin-left: 10px; position: relative"></div>
+          </body>
+            </div>
+      </div>
+</div>
+{% endblock %}

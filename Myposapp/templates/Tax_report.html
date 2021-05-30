@@ -1,0 +1,278 @@
+<style>
+  .flex-container
+{
+  margin: auto;
+  /* align-items: center; */
+    display: flex;
+    flex-direction: column;
+    /* background-color: #838383; */
+    width:  210mm;
+    height:  297mm;
+    /* background-color: rgb(255, 255, 255); */
+    border-width: 1px;
+    border-color: black;
+    
+  }
+  table {
+  width: 100%;
+  border-collapse: collapse;
+}
+@page 
+{
+    size: auto;   /* auto is the initial value */
+    margin: 0mm;  /* this affects the margin in the printer settings */
+}
+  
+  .base{
+    display: flex;
+    /* margin-left: 430px; */
+    /* background-color: rgb(255, 255, 255); */
+    width:  100%;
+    height:  100%;
+    flex-direction: column;
+    /* margin-left: 10%; */
+  }
+  .head
+  {
+    display: flex;
+    /* margin-left: 430px; */
+    /* background-color: rgb(36, 25, 48); */
+    width:  34%;
+    height:  100%;
+    flex-direction: column;
+    /* margin-left: 10%; */
+  } 
+  .head1
+  {
+    display: flex;
+    /* margin-left: 430px; */
+    /* background-color: rgb(63, 90, 66); */
+    width:  33%;
+    height:  100%;
+    flex-direction: column;
+    /* margin-left: 10%; */
+  }
+  @media print {
+    .hidden-print,
+    .hidden-print * {
+        
+        display: none !important;
+        
+    }
+    
+} 
+  
+  .tab{
+    display: flex;
+    /* margin-left: 430px; */
+    /* background-color: rgb(132, 245, 239); */
+    width:  100%;
+    height:  14.3%;
+    /* margin-left: 10%; */
+  }
+  .tab1{
+    display: flex;
+    /* margin-left: 430px; */
+    /* background-color: rgb(190, 132, 245); */
+    width:  100%;
+    height:  70%;
+    /* margin-left: 10%; */
+  }
+  .info
+  {
+    display: inline;
+    width: 100%;
+    height: 100%;
+  }
+  .tablr{
+    display: flex;
+    /* margin-left: 430px; */
+    /* background-color: rgb(190, 132, 245); */
+    width:  100%;
+    height:  14.3%;
+    /* margin-left: 10%; */
+  }
+  .top{
+    display: flex;
+    /* margin-left: 430px; */
+    /* background-color: rgb(190, 132, 245); */
+    width:  100%;
+    height:  20%;
+    /* margin-left: 10%; */
+  }
+  .bottom{
+    display: flex;
+    /* margin-left: 430px; */
+    /* background-color: rgb(132, 245, 198); */
+    width:  100%;
+    height:  80%;
+    /* margin-left: 10%; */
+  }
+
+ 
+</style>
+  <div class="flex-container">
+    
+    <div class="base">
+      <div class="top">
+        <div class="head1">
+          <div class="tab">
+
+          </div>
+          <div class="tab">
+            
+          </div>
+          <div class="tab">
+           
+          </div>
+          <div class="tab">
+            <span style="margin-left: 5%; margin-top: 5%;">ที่อยู่สถานที่ประกอบการ : ....................</span>
+          </div>
+          <div class="tab">
+            
+          </div>
+          <div class="tab">
+            
+          </div>
+          <div class="tab">
+            
+          </div>
+ 
+
+
+
+
+          
+        </div>
+        <div class="head">
+          <div class="tab">
+
+          </div>
+          <div class="tab">
+            <span style="margin-left: 25%;">รายงานภาษีการขาย</span>
+          </div>
+          <div class="tab">
+            <span style="margin-left: 18%; margin-top: -3%;">เดือน .................... ปี .............</span>
+          </div>
+          <div class="tab">
+            <span style="margin-top: -4%;">ชื่อผู้ประกอบการ........................................</span>
+          </div>
+          <div class="tab" style="margin-top: -6.5%;">
+            <div >
+              <span>..........................................</span>
+            </div>
+            <div style="margin-left: 13%;">
+              <span>เลขประจำ</span>
+            </div>
+          </div>
+          <div class="tab">
+            
+          </div>
+          <div class="tab">
+            
+          </div>
+
+
+        </div>
+        <div class="head1">
+          <div class="tab">
+
+          </div>
+          <div class="tab">
+            
+          </div>
+          <div class="tab">
+            
+          </div>
+          <div class="tab"style="margin-top: 10%;">
+            
+              <span >ตัวผู้เสียภาษี : ...............................</span>
+            
+          </div>
+          <div class="tab" >
+           
+             
+            
+            
+          </div>
+          <div class="tab" >
+            <input class="form-check-input" type="radio" id="main" name="branch" value="สำนักงานใหญ่">
+            <span class="form-check-span" for="inlineRadio1" >สำนักงานใหญ่</span>
+
+            <input class="form-check-input" type="radio" id="sub" name="branch" value="สาขา">
+            <span class="form-check-span" for="inlineRadio1" >สาขา</span>
+          </div>
+          <div class="tab">
+            
+          </div>
+
+        </div>
+            
+         
+          
+      </div>
+
+      <div class="bottom" style="width: 90%;margin: auto;">
+        <table class="table table-hover" style="font-family: Baloo;" border :"1px">
+          <thead>
+            <tr style="font-size: 15px; text-align: center; ">
+              <th scope="col" >ลำดับที่</th>
+              <th scope="col"class='font'>วันที่</th>
+              <th scope="col">เลขที่</th>
+              <th scope="col-sm">ชื่อผู้ซื้อสินค้า</th>
+              <th scope="col-sm">มูลค้าสินค้า</th>
+              <th scope="col-sm">ภาษีมูลค่าเพิ่ม</th>
+              <th scope="col-sm">หมายเหตุ</th>
+            </tr>
+          </thead>
+          <tbody  style="font-size: 14px; color: #000000;text-align : center;">
+              {% for i in data %}
+              <a href="/">
+              <tr>
+                  
+                  <th>{{forloop.counter}}</th>
+                  <td>{{i.Date}}</td>
+                  <td>{{i.id}}</td>
+                  <td>{{i.Member_id}}</td>
+                  <td>{{i.Total}}</td>
+                  <td>{{i.Tax}}</td>
+                  <td></td>
+              </tr>
+              
+              </a>
+          {% endfor %}
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>รวมทั้งสิ้น</td>
+          <td>{{to}}</td>
+          <td>{{va}}</td>
+          <td></td>
+          </tbody>     
+      </table>   
+      </div>
+      
+    </div>
+            
+      
+		  
+
+
+</div><!--End InvoiceTop-->
+
+  <div  id = "head_bar_right" style="margin-left: 50%;">                             
+	<button id="btnPrint" class="hidden-print"  style="background-color: #4CAF50;border : 1px solid rgb(0, 255, 106);color: white;padding:10px 20px;border-radius: 15px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px; " onclick="window.print();">Print</button>
+  </div>
+
+<!-- <script>
+  function print()
+  {
+    window.print();
+  }
+</script> -->
+
+ 

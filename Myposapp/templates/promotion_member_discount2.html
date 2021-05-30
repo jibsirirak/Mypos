@@ -1,0 +1,193 @@
+{% extends 'layout_admin.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" type="text/css"  href="{% static 'promotion_member_discount.css' %}">
+<form id="form2" method="POST" action="/membership_promotion/addpromotion/discount2/">
+    {% csrf_token %} 
+<div class="flex-container">
+    <div class="flex-container2">
+        <div style="background-color:#F1F1F1; height:17%; width: 86%; margin-left: 7% ; margin-top: 15px;" >
+            <CENTER>
+                <P style = "vertical-align: middle ;font-family:Baloo; font-size: 25px; margin-top: 15px; color : #588dc5 ;" >Promotion  Name  :
+                    <input style = " border: none; margin-left: 1.2%; background: #E4E4E4 ; color : #7B8599 ; font-size: 15px; "  type="text" name="promotion_member_name" size="20" maxlength="200"  placeholder="    insert name promotion"/> 
+
+                    <P style = " position:static; vertical-align: middle ;font-family:Baloo; font-size: 25px; margin-top: 15px; color : #588dc5 ;" >Discount Type  :
+                        <label style = "margin-left: 1.2%; color : #b19d9d ; font-size: 18px; "> Brithday  Special </label>
+                
+                    
+                </CENTER>
+            </div>
+            <div style=" height:4%;"></div>
+
+            <div style=" height:9%; width: 100%;" >
+                <lable style = "vertical-align: middle ;font-family:Baloo; font-size: 25px; margin-left: 6%; color : #6EA6E2 ;" >Promotion time</lable>
+                <div style="background-color: black; height: 2; width: 90%; margin-left: 5%; margin-top: 10 %;"></div>
+             
+            </div>
+
+
+            
+            <div style=" height:15%; width: 100%;" > 
+                <div style="float:left ;  width: 25%; margin-left: 30%; ">
+                <P style = "vertical-align: middle ;font-family:Baloo; font-size: 15px; margin-top: 15px; color : #588dc5 ;" >Start  Date  :
+                    <input type="date" id="birthday" name="startdate"  style="margin-left: 1.2%; background-color : #E4E4E4;  ">
+                </div>
+                <div style="float:left ; width: 40%; ">   
+                    <P style = "vertical-align: middle ;font-family:Baloo; font-size: 15px; margin-top: 15px; color : #588dc5 ;" >End  Date  :
+                        <input type="date" id="birthday" name="enddate" style="margin-left: 1.2%; background-color : #E4E4E4 ;  ">
+                </div>
+                <div></div>        
+                <div style="float:left ; width: 18%; margin-left: 30%; ">
+                    <P style = "vertical-align: middle ;font-family:Baloo; font-size: 15px; margin-top: 15px; color : #588dc5 ;" >From
+                        <input type="time" id="birthday" name="form"  style="margin-left: 1.2%; background-color : #E4E4E4 ;  ">
+                    </div>
+                    <div style="float:left ;  width: 40%; ">   
+                        <P style = "vertical-align: middle ;font-family:Baloo; font-size: 15px; margin-top: 15px; color : #588dc5 ;" >To
+                            <input type="time" id="birthday" name="to" style="margin-left: 1.2%; background-color : #E4E4E4 ; ">
+                    </div>            
+                            
+            </div>
+
+
+            <div style=" height:10%; width: 100%;" >
+                <lable style = "vertical-align: middle ;font-family:Baloo; font-size: 25px; margin-left: 6%; color : #6EA6E2 ;" >Setting</lable>
+                <div style="background-color: black; height: 2; width: 90%; margin-left: 5%; margin-top: 10 %;"></div>
+             
+            </div>
+
+                <div style=" height: 45px; width: 100%;" > 
+
+                 <label  style="margin-left: 37%; font-family:Baloo; font-size: 15px; margin-top: 15px; color : #588dc5 ;">
+                <input type="radio" name="con" value="On birthday" checked>
+                <span class="radio_mark">
+                    On birthday of member 
+                </span>
+            </label>
+            <label   style="margin-left: 6%; font-family:Baloo; font-size: 15px; margin-top: 15px; color : #588dc5 ;">
+                <input type="radio" name="con" value="On birthmonth" class="input">
+                <span class="radio_mark">
+                    On birthmonth of member
+                </span>
+            </label>
+              </div>
+
+                    <div style=" height:25%; width: 100%; ">
+                      <div class="wrapper">
+                        <div class="radio_tabs">
+                            <label class="radio_wrap" data-radio="radio_1" style="margin-left: 37%; font-family:Baloo; font-size: 15px; margin-top: 15px; color : #588dc5 ;">
+                                <input type="radio" name="type" class="input" value="Brithday Special Persent  Off" checked>
+                                <span class="radio_mark">
+                                    Take  Persent  Off  
+                                </span>
+                            </label>
+                            <label class="radio_wrap" data-radio="radio_2" style="margin-left: 8.9%; font-family:Baloo; font-size: 15px; margin-top: 15px; color : #588dc5 ;">
+                                <input type="radio" name="type" value="Brithday Special Amount  Off" class="input">
+                                <span class="radio_mark">
+                                    Take  Amount  Off
+                                </span>
+                            </label>
+
+                      
+                            
+                        </div>
+                    
+                    
+                    </div>
+                
+                    <div class="content">
+                        <div class="radio_content radio_1" style=" height:26%">
+                            <P style = "margin-left: 39%; vertical-align: middle ;font-family:Baloo; font-size: 15px; margin-top: 15px; color : #588dc5 ;" >Discount Value1  :
+                                <input style = "margin-left: 1.2%; background: #C0F9BD ; color : #b19d9d ; font-size: 12px; "  type="text" name="discount_value" value="{{item.value}}" size="30" maxlength="200"  placeholder="insert value here"/>
+                                <div style=" height:2px; width: 100%;"></div>
+                                <P style = "margin-left: 39%; vertical-align: middle ;font-family:Baloo; font-size: 15px; margin-top: 5px; color : #588dc5 ;" >Buy  At  Least1  :
+                                    <input style = "margin-left: 1.2%; background: #C0F9BD ; color : #b19d9d ; font-size: 12px; "  name="atlest" size="30" maxlength="200"  placeholder="insert value here"/>
+                                </div>
+                        <div class="radio_content radio_2" style="height:26%">
+                            <P style = "margin-left: 39%; vertical-align: middle ;font-family:Baloo; font-size: 15px; margin-top: 15px; color : #588dc5 ;" >Discount Value2  :
+                                <input style = "margin-left: 1.2%; background: #C0F9BD ; color : #b19d9d ; font-size: 12px; "  type="text" name="discount_value2" value="{{item.value}}" size="30" maxlength="200"  placeholder="insert value here"/>
+                                <div style=" height:2px; width: 100%;"></div>
+                                <P style = "margin-left: 39%; vertical-align: middle ;font-family:Baloo; font-size: 15px; margin-top: 5px; color : #588dc5 ;" >Buy  At  Least2  :
+                                    <input style = "margin-left: 1.2%; background: #C0F9BD ; color : #b19d9d ; font-size: 12px; "  name="atlest2" size="30" maxlength="200"  placeholder="insert value here"/>
+                                </div>
+                        
+                    </div>
+                </div>
+            
+                <div> 
+                  <div style="height: 20px;"></div>
+
+                <div style="float:left ;  width: 50%;  margin-top: 0px; margin-left: 25px; ">
+                  <a class="btn btn-danger" style = "font-family:Baloo; font-size: 15px;" href="/membership_promotion/" role="button">Back</a></div>
+                  
+                  <div style="float:left ; width: 42%;  margin-top: 0px;">   
+                    <button onclick="submitForms()" id="submit" type="submit" class="btn btn-danger" style = " margin-left: 100%; font-family:Baloo; font-size: 15px;" href="#" role="button">Summit</button></div>
+            
+                    </div>
+
+
+
+    
+</div>
+    
+</div>
+
+
+
+<script src="{% static 'jquery-latest.min.js' %}"></script> 
+<script>
+	$(function(){
+		$(".checkme").click(function(event) {
+			var x = $(this).is(':checked');
+			if (x == false) {
+				
+                $(this).parents(".checkbox-card").find('.passport-box').hide();
+				
+			}
+			else{
+				$(this).parents(".checkbox-card").find('.passport-box').show();
+				
+			}
+		});
+	})
+</script>
+<script>
+    $(document).ready(function(){
+        /* by default hide all radio_content div elements except first element */
+        $(".content .radio_content").hide();
+        $(".content .radio_content:first-child").show();
+
+        /* when any radio element is clicked, Get the attribute value of that clicked radio element and show the radio_content div element which matches the attribute value and hide the remaining tab content div elements */
+        $(".radio_wrap").click(function(){
+          var current_raido = $(this).attr("data-radio");
+          $(".content .radio_content").hide();
+          $("."+current_raido).show();
+        })
+    });
+</script>
+
+<script>
+    var c = "{{c}}";
+    if(c != '1'){
+        $('#submit').show();
+    }
+
+   submitForms = function(){
+    document.getElementById("form2").submit();
+    
+    }
+
+    $(document).ready(function(){
+        $('#rApply').on('change',function(){
+            $('.content').hide();
+            $('#' + $(this).val()).fadeIn(500);
+          
+        }).change();
+    });
+    // function setAmount(){
+    //     var x =10;
+    //     document.getElementById("test").innerHTML = "You selected: " + x;
+    // }
+</script>
+
+{% endblock %} 

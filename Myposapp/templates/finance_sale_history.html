@@ -1,0 +1,110 @@
+{% extends 'layout_finance.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">       
+ <link href="https://fonts.googleapis.com/css?family=Baloo&display=swap" rel="stylesheet">     
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<scrip src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+<link rel="stylesheet" href="/path/to/cdn/bootstrap.min.css" />
+<link rel="stylesheet" href="/path/to/bootstrap-steps.min.css" />
+
+<scrip src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></scrip>
+<scrip src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></scrip>
+  
+
+<style>
+   .head1
+  {
+    display: flex;
+    /* background-color: rebeccapurple; */
+    width:  100%;
+    height:  5%;
+    /* margin-left: 10%; */
+  }
+                  .tab {
+                    display: inline-block;
+                    margin-left: 200px;
+                }
+                .tab2 {
+                    display: inline-block;
+                    margin-left: 110px;
+                }
+                .tab3 {
+                    display: inline-block;
+                    margin-left: 180px;
+                }
+                .tab4 {
+                    display: inline-block;
+                    margin-left: 125px;
+                }
+                .tab5 {
+                    display: inline-block;
+                    margin-left: 100px;
+                }
+                .tab6 {
+                    display: inline-block;
+                    margin-left: 75px;
+                }
+</style>
+
+<div class = 'flex-container' style=" background-color : white ; display :flex ; flex-direction : row  ">
+    <div style=" background-color : rgb(255, 255, 255) ; height : 100% ; width : 5% ; "></div>
+    <div style=" background-color : rgb(255, 255, 255) ; height : 100% ; width : 95% ; display: flex ; flex-direction : column" >
+    <div style=" background-color : rgb(255, 255, 255) ; height : 10% ; width : 100% ; display: flex ; flex-direction : row" >
+        <form action="/sales_history/ID/">
+        {% csrf_token %}
+        <div class="head1" style=" background-color : rgb(255, 255, 255)  ; width : 400px ; height : 70px ; ">
+            <span style="font-family: Baloo; font-size: 20">Search </span>
+            <input type="text" name ="ID" class="form-control " style="width:100%; margin-left: 2%;">
+            <button type="submit" class="btn btn-primary" style="margin-left :1%; height: 35px ;width :35px ;border: none; border-radius: 17.5px; background: url(https://media.discordapp.net/attachments/807134152011939850/812019766620848209/ss.png)"></button>
+        </form>
+        </div>
+        <form action="/sales_history/Date/">
+        {% csrf_token %}
+        <div class="head1" style=" background-color : rgb(255, 255, 255)  ; width : 500px ; height : 70px ;margin-left: 40%; align-items: center; margin-top: -5%;">
+            
+                <span style="font-family: Baloo; font-size: 15">Start </span>
+                <input name="date_start" type="date" class="form-control " style="width:100%; margin-left: 2%;">
+                <span style="font-family: Baloo; font-size: 15 ; margin-left: 5%;">Stop </span>
+                <input name="date_stop" type="date" class="form-control " style="width:100%; margin-left: 2%;">
+                <button type="submit" class="btn btn-primary" style="margin-left :1%; height: 35px ;width :35px ;border: none; border-radius: 17.5px; background: url(https://media.discordapp.net/attachments/807134152011939850/812019766620848209/ss.png)"></button>
+    
+            </form>
+        </div>
+</div>
+        <div style="background-color : white ; width : 100% ; height : 40px ;">
+            <span style=" margin-left : 10px ; margin-top : 1000px;font-size: 13px; color : rgb(78, 78, 78) ;font-family: Baloo;">Bill No.<span class="tab2"></span>Date<span class="tab3"></span>Time<span class="tab4"></span>Total<span class="tab5"></span>Member<span class="tab6"></span>Employee Name<span class="tab6"></span>Role
+        </div>
+        <div style="background-color : rgb(78, 78, 78) ; width : 100% ; height : 2px ;"></div>
+        <div style=" background-color : white ; width : 100% ; height : 500px ; overflow: auto;  ">
+        <table class="table table-hover" style="font-family: Baloo;  ">
+            <tbody  style="font-size: 12px; color: #8E8C8C;text-align : center">
+                {% for i in data %}
+                <a href="/">
+                <tr>
+                    <th>{{i.id}}</th>
+                    <td>{{i.Date}}</td>
+                    <td>{{i.Time}}</td>
+                    <td>{{i.Total}}</td>
+                    <td>{{i.Member_id}}</td>
+                    <td>{{i.Employee_name}}</td>
+                    <td>{{i.Employee_role}}</td>
+                    <td>
+                        <button class="btn btn-primary" type="button" onclick = "location.href='/sales_history/bill_info/{{i.id}}'">view</button>
+                    </td>
+                </tr>
+                
+                </a>
+            {% endfor %}
+            </tbody>     
+        </table>                   
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

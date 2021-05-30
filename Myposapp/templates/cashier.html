@@ -1,0 +1,683 @@
+{% load static %}
+<html lang="en">
+        <head>
+            <meta charset="utf-8">
+            <title>Cashier</title>
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <link href="https://fonts.googleapis.com/css?family=Baloo&display=swap" rel="stylesheet">
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+            {% comment %} <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> {% endcomment %}
+            <link rel="stylesheet" type="text/css"  href="{% static 'cashier_admin.css' %}">
+            
+            <script src="{% static 'promptpay-qr.js' %}"></script>
+            <script src="{% static 'qrcode.min.js' %}"></script>
+
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+            <!-- Remember to include jQuery :) -->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+
+            <!-- jQuery Modal -->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+
+            <style>
+            </style>
+          
+        </head>
+          <style>
+                .tab {
+                    display: inline-block;
+                    margin-left: 200px;
+                }
+                .tab2 {
+                    display: inline-block;
+                    margin-left: 120px;
+                }
+                .tab3 {
+                    display: inline-block;
+                    margin-left: 90px;
+                }
+                .tab4 {
+                    display: inline-block;
+                    margin-left: 10px;
+                }
+                
+            </style>
+        <body>
+            <div class="flex-container">
+                <div id="tab">
+                <div  style="background-color : rgb(49, 49, 49) ; width:2%; height:100%;"></div>
+                    <div  style="background-color : rgb(49, 49, 49) ; width:10%; height:100%; display: flex;flex-direction:  column;">
+                        <div  style="background-color : rgb(49, 49, 49) ; width:100%; height:60%;">
+                            <img src="https://cdn.discordapp.com/attachments/807134152011939850/816813449379053628/LogoGroup-W_copy.png" width= 70% height=100% >
+                        </div>
+                        <div  style="background-color : rgb(49, 49, 49) ; width:100%; height:20%;color : white ">
+                            <span id="text" style="color : white ;font-size:10px;" >User :</span>
+                            <span id="text"  style="color : white ;font-size:10px;">{{username}}</span>
+                        </div>
+                        <div  style="background-color : rgb(49, 49, 49) ; width:100%; height:20%;">
+                            <span id="datetime"  style="color : white ;font-size:10px;" ></span>
+                        </div>
+                    
+                    
+                    </div>
+                    <div  style="background-color :  rgb(49, 49, 49) ; width:8%; height:100%; margin-left : -2% ;margin-top : 0.3% ;">
+                        <img src="https://media.discordapp.net/attachments/807134152011939850/811626090858545172/Woman-Girl-Lady-Female-Person-People-Avatar-512_1.png" width= 80% height=90% >
+                    </div>
+                    <div  style=" width:68%; height:100%;"></div>
+                    <div  style="background-color : rgb(49, 49, 49) ; width:2%; height:100%;"></div> 
+                    <div  style=" width:20%; height:100%; display: flex;flex-direction:  column;">
+                        <div  style=" width:100%; height:30%;"></div>
+                        <div  class="button_cashier" style=" width:70%; height:40%;margin-left : 25% ; ">
+                            <a href="/cashier/receipt/"  style="margin-top:1.5%;  margin-right:1.5%; text-decoration:none; text-align: center;" ><p style="padding-top: 5.5%"> Receipt</p></a>
+                        </div>
+                        <div  style=" width:100%; height:30%;"></div>
+                    </div>
+                    
+                    <div  style=" width:0.2%; height:100%; display: flex;flex-direction:  column;">
+                        <div  style=" width:100%; height:20%;"></div>
+                        <div  style="background-color:white;  width:100%; height:60%;"></div>
+                        <div  style=" width:100%; height:20%;"></div>
+                    </div>
+                    
+                    <div  style="background-color : rgb(49, 49, 49) ; width:4%; height:100%; display: flex;flex-direction:  column;">
+                    
+                        <div  style=" width:100%; height:30%;"></div>
+                        <div  style=" width:100%; height:40%;margin-left : 15% ; ">
+                            <a href="/logout/" type="submit" class="btn btn-primary" style="height: 35px ;width :35px ;    border: none; border-radius: 17.5px; background: url(https://cdn.discordapp.com/attachments/807134152011939850/816812473977012294/logout.png)"></a>
+                        </div>
+                        <div  style=" width:100%; height:30%;"></div>
+                    </div>
+                    
+                </div>
+
+                <div id="space">
+                </div>
+
+                <div id="block">
+                
+                    <div id="space1"></div>
+                    <div id="cashier">
+                        <div id="member">
+                            <div id="member1">
+                                <div id="space6"></div>
+                                <div id="member3">
+                                    <div style = "width : 80% ;">
+                                        <form action="/cashier/" class="form-inline" method="GET">
+                                            <label  style = "font-family:Baloo; margin-left : 5% ; color : white ;" >Member ID  : </label>
+                                            <input  
+                                                    id="phone"
+                                                    name = "phonemember"class="form-control" 
+                                                    type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" 
+                                                    maxlength="10" style="border-radius: 50px; width:  40%; height: 30% ; margin-left :2%;">
+                                            <button id="input_member" type="submit" class="btn btn-primary" style="margin-left :1%; height: 35px ;width :35px ;    border: none; border-radius: 17.5px; background: url(https://media.discordapp.net/attachments/807134152011939850/812019766620848209/ss.png)"></button>
+                                        </form>
+                                    </div>
+                                    <div style = " width : 20% ;">
+                                        <button class="button_logout" >Register</button>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <div id="member2">
+                                <div style="background-color : #87B4E4; width : 13% ; height : 100%;">
+                                    <label  style = " font-size:14px; font-family:Baloo; margin-left : 37% ; color : white ; margin-top : 7%;" >Name : </label>
+                                </div>
+                                <div id="data">
+                                    <div style="background-color : #87B4E4; width : 100% ; height : 75%;">
+                                        {%if member == ""%}
+                                        <label  style = " font-size:14px; font-family:Baloo;  color : rgb(78, 78, 78) ; margin-top : 2%; margin-left : 10% ;" > </label>
+                                        {% else %}
+                                        <label   style = " font-size:14px; font-family:Baloo;  color : rgb(78, 78, 78) ; margin-top : 2%; margin-left : 10% ;" >{{member2.Firstname}} {{member2.Lastname}}</label>
+                                        {%endif%}
+                                    </div>
+                                    <div style="background-color : white; width : 100% ; height : 3%;"></div>
+                                    <div style="background-color : #87B4E4; width : 100% ; height : 20%;"></div>
+                                </div>
+                                <div style="background-color : #87B4E4; width : 13% ; height : 100%;">
+                                    <label  id="input_phone" style = " font-size:14px; font-family:Baloo; margin-left : 50% ; color : white ; margin-top : 7%;" >Tel : </label>
+                                </div>
+                                <div id="data2">
+                                    <div style="background-color : #87B4E4; width : 100% ; height : 75%;">
+                                    {%if member == ""%}
+                                        <label  style = " font-size:14px; font-family:Baloo; color : rgb(78, 78, 78) ; margin-top : 5%; margin-left : 10% ;" ></label>
+                                    {% else %}
+                                         <label  style = " font-size:14px; font-family:Baloo; color : rgb(78, 78, 78) ; margin-top : 5%; margin-left : 10% ;" >{{member2.Phonenumber}}</label>
+                                    {%endif%}
+                                    </div>
+                                    <div style="background-color : white; width : 100% ; height : 3%;"></div>
+                                    <div style="background-color : #87B4E4; width : 100% ; height : 20%;"></div>
+                                </div>
+                                <div style="background-color : #87B4E4; width : 12% ; height : 100%; ">
+                                    {% comment %} <label  style = "font-size:14px; font-family:Baloo; margin-left : 55% ; color : white ; margin-top : 7%;" >Point : </label> {% endcomment %}
+                                </div>
+                                <div id="data3">
+                                    <div style="background-color : #87B4E4; width : 100% ; height : 75%;">
+                                    {% comment %} {%if member == ""%}
+                                        <label  style = " font-size:14px; font-family:Baloo;  color : rgb(78, 78, 78) ; margin-top : 10%;" margin-left : 10% ;></label>
+                                    {% else %}
+                                        <label  style = " font-size:14px; font-family:Baloo;  color : rgb(78, 78, 78) ; margin-top : 10%;" margin-left : 10% ;>{{member2.Point}}</label>
+                                    {%endif%} {% endcomment %}
+                                    </div>
+                                    {% comment %} <div style="background-color : white; width : 100% ; height : 3%;"></div> {% endcomment %}
+                                    <div style="background-color : #87B4E4; width : 100% ; height : 20%;"></div>
+                                </div>
+                                <div style="background-color : #87B4E4; width : 3% ; height : 100%;"></div>
+                                    
+                                
+                                
+                            </div>
+                        </div>
+                        <div id="line"></div>
+                       
+                        <div id="barcode" style=" width : 100% ;  ">
+                            <div style="width:100% ; height:100%">
+                                <form  id="form1" >
+                                    <div style=" width : 100% ; height : 100%; display: flex ; flex-direction : row ; ">
+                                        <div style="width : 150px ; height : 100%;">
+                                            <label  style = "font-family:Baloo; margin-left : 35% ; color : gray ;  margin-top : 20%" >barcode  : </label>
+                                        </div>
+                                        <div style=" width : 400px ; height : 100%; margin-top : 13px ;">
+                                            <input  
+                                                name="barcodeID"
+                                                class="form-control"  
+                                                type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" 
+                                                maxlength="13"
+                                                style=" border-radius: 50px; width:  98%; height: 50% ; margin-left :2%; margin-top : 2% ;">
+                                        </div>
+                                        <div style=" width : 150px ; height : 100%;">
+                                            <label  style = " margin-top : 20% ; font-family:Baloo; margin-left : 25% ; color : gray ; margin-top : 20% ;" >Amount  : </label>
+                                        </div>
+                                        <div style=" width : 150px ; height : 100%; margin-top : 13px ">
+                                            <input name="input_price" type="number" class="form-control"  style="border-radius: 20px; width:  80%; height: 50% ; margin-left :2%; margin-top : 4% ; " value=1  >
+                                        </div>
+                                        <div style="width : 150px ; height : 100%; ">
+                                            <label  style = "  font-family:Baloo; margin-left : 2% ; color : gray ; margin-top : 20% ;" >Piece</label>
+                                        </div>
+                                        <div style=" width : 200px ; height : 100%; ">
+                                            <button type="submit" class="btn btn-primary" style="margin-left :1%; height: 35px ;width :35px ;    border: none; border-radius: 17.5px;margin-top : 12% ;; background: url(https://media.discordapp.net/attachments/807134152011939850/812019766620848209/ss.png)"></button>
+                                        </div>
+                                        
+                                    </div>
+                                    
+                                </form>
+                            </div>
+                        </div>
+
+                        
+                        <div id="line2"></div>
+                        <div id="product">
+                            <div style="background-color : white ; width : 5% ; height : 100% ;"></div>
+                            <div style="background-color : white ; width : 90% ; height : 400px ;   ">
+                            <div style="background-color : white ; width : 100% ; height : 20px ;"></div>
+                            <div style="background-color : white ; width : 100% ; height : 40px ;">
+                            <span style=" margin-left : 100px; margin-top : 1000px;font-size: 13px; color : rgb(78, 78, 78) ;font-family: Baloo;">Barcode<span class="tab"></span>product Name<span class="tab2"></span>Count<span class="tab3"></span>Price</span>
+                            </div>
+                            <div style="background-color : rgb(78, 78, 78) ; width : 100% ; height : 2px ;"></div>
+                            <div style="background-color : white ; width : 100% ; height : 340px ;overflow: auto;">
+                                <table class="table table-hover" style="font-family: Baloo;  ">
+                                    <tbody  style="font-size: 12px; color: #8E8C8C;text-align : center">
+                                    {% for i in results %} 
+                                    <tr>
+                                        <td>{{i.1}}</td>
+                                        <td>{{i.2}} ({{i.4}}) {{i.3}}</td>
+                                        <td>{{i.6}}</td>
+                                        <td>{{i.5}}</td>
+                                        <td ><button class="btn btn-danger" style="font-size: 10px; color: white;" onclick = "location.href='/cashier/delete_item/{{i.9}}/'"  type="button">delete</button></td>
+                                      
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                                </div>
+                            </div>
+                            <div style="background-color : white ; width : 5% ; height : 100% ;"></div>
+
+                        </div> 
+                        <div id="total">
+                        <label  style = "font-size: 14px; color: #8E8C8C;font-family:Baloo; margin-right : 5% ; color : gray ; margin-top : 1.5% ; " >Total :  </label>
+                        <label  style = "font-size: 14px; color: rgb(78, 78, 78);font-family:Baloo; margin-right : 5% ; color : gray ; margin-top : 1.5% ; " >{{count}}</label>
+                            <label  style = "font-size: 14px; color: #8E8C8C;font-family:Baloo; margin-right : 5% ; color : gray ; margin-top : 1.5% ; " >Price  </label>
+                        </div> 
+
+                    </div>
+                    <div id="space2"></div>
+                    <div id="summary" style=" background-color : white ;">
+                        <div id="sum">
+                            <div  style="background-color : white ; width:100%; height:100px; text-align:center; margin-top : 5px ;">
+                                <span style="font-size: 30px; color: rgb(78, 78, 78);font-family:Baloo;"  >Summary</span><br>
+                                <span id="datetime2" style="font-size: 10px; color: rgb(78, 78, 78);font-family:Baloo;"  ></span>
+                            </div>
+
+                            <div style="background-color : rgb(78, 78, 78) ; width : 80% ; height : 1.5px ; margin-left : 40px"></div>
+                            <div  id="sum_product" style=" background-color : white ; height : 400px ; overflow : auto ;">
+                            <table class="table table-borderless" style="font-family: Baloo; ">
+                                    <tbody  style="font-size: 11px; color: #8E8C8C;text-align : center">
+                                        {% for i in results %} 
+                                            <tr>
+                                                <td></td>
+                                                <td>{{i.6}}</td>
+                                                <td>{{i.2}} ({{i.4}}) {{i.3}}</td>
+                                                <td>{{i.5}}</td>
+                                                <td></td>
+                                            </tr>
+                                        {% endfor %} 
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div style="background-color : white; width : 100% ; height : 120px ; display: flex ; flex-direction : column ; ">
+                                <div style="background-color : white; width : 100% ; height : 25px ; display: flex ; flex-direction : row ">
+                                    <div style=" width : 30px ; "></div>
+                                    <div style="background-color : white; width : 120px ; text-align: left;">
+                                        <span style="font-size: 15px; color: #6EA6E2;font-family:Baloo; ">Price</span>
+                                    </div>
+                                    <div style="background-color : white; width : 110px ; "></div>
+                                    <div style="background-color : white; width : 100px ; text-align: right;  margin-top : 8px ">
+                                         <span id=cal style="font-size: 13px; color: rgb(78, 78, 78);font-family:Baloo;  " >{{total_price}}</span>
+                                    </div>
+                                </div>
+                                <div style="background-color : white; width : 100% ; height : 25px ; display: flex ; flex-direction : row ">
+                                    <div style=" width : 30px ; "></div>
+                                    <div style="background-color : white; width : 120px ; text-align: left;">
+                                        <span style="font-size: 15px; color: #6EA6E2;font-family:Baloo; ">Discount</span>
+                                    </div>
+                                    <div style="background-color : white; width : 110px ; "></div>
+                                    <div style="background-color : white; width : 100px ; text-align: right;  margin-top : 8px ">
+                                         <span  style="font-size: 13px; color: rgb(78, 78, 78);font-family:Baloo;  " >0.00</span>
+                                    </div>
+                                </div>
+                                <div style=" width : 100% ; height : 40px ; display: flex ; flex-direction : row  ; margin-top: -5px">
+                                    <div style=" width : 30px ; "></div>
+                                    <div style=" width : 120px ; text-align: left;">
+                                        <span style="font-size: 30px; color: #6EA6E2;font-family:Baloo; ">Total</span>
+                                    </div>
+                                    <div style=" width : 110px ; "></div>
+                                    <div style=" width : 100px ; text-align: right;  margin-top : 10px ">
+                                         <span 
+                                         id="total_money" 
+                                         style="font-size: 20px; color: rgb(78, 78, 78);font-family:Baloo;  " ></span>
+                                    </div>
+                                </div>
+                            </div>
+                           
+                            
+                        </div>
+
+                        <div id="space3"></div>
+                        <form action="/cashier/create_bill/" >
+                        <div id="cash" style="background-color : #c7c7c7 ">
+                            <!--Popup Success -->
+                            <div class="popup" id="popup_success">
+                                <div class="overlay"></div>
+                                <div class="content" style="background-color:white; border-radius : 40px; height:20%; weight:80%;">
+                                    <div style="height: 100% ; width : 100% ; display:flex ; flex-direction : column;">
+                                        <div style="height : 60% ; display:flex; flex-direction : row ;">
+                                            <div style="width : 37.5% ; "></div>
+                                            <div style="width : 25% ; ">
+                                                <img src="https://cdn.discordapp.com/attachments/807134152011939850/817306853586632714/success.png" width= 80% height=100% >
+                                            </div>
+                                            <div style="width : 37.5% ; "></div>
+                                        </div>
+                                        <div style=" height : 40% ; margin-top : -3% ;">
+                                            <h1 style="font-family:Baloo;color : #464645; ">Successful !</h1>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--End Popup -->
+                            
+                            <!-- hidden -->
+                            {% comment %} <input name="total" type="number"  value={{total_price}} disabled > {% endcomment %}
+                            {% comment %} <input name="countproduct" type="number"  value={{count}} disabled  > {% endcomment %}
+                            {% comment %} <input name="member_or" type="number"  value={{member.Phonenumber}} disabled hidden > {% endcomment %}
+                            {% comment %} <input name="pro_fit" type="number"  value={{profit}} disabled  > {% endcomment %}
+                            {% comment %} <input name="tax_x" type="tax"  value={{tax}} disabled >  {% endcomment %}
+                
+                            <!--Popup QR -->
+                            <div class="popup" id="popup-QR">
+                                <div class="overlay"></div>
+                                <div class="content" style="width:20%;  height:70%;">
+                                    <div class="close-btn" onclick="togglePopup_QR()">&times;</div>
+                                    <div style="  height: 100% ; width : 100% ; display:flex ; flex-direction : column;">
+                                        <div style=" background-color : white; height:10%; "></div>
+                                        <div style=" background-color : white; height:20%; ">
+                                            <img src="https://media.discordapp.net/attachments/807134152011939850/818913376284966922/pormpt.png" width= 80% height=100% >
+                                        </div>
+                                        <div id="qrcode" style="  display:flex ; justify-content: center ; "></div>
+                                        <div style=" background-color : white; height:8%; margin-top : 5%; ">
+                                            <span style="font-family:Baloo;color : #464645 ; font-size : 16px;">MyPOS Company</span>
+                                        </div>
+                                        <div style=" background-color : white; height:7%; margin-top : -2%;">
+                                            <span id="totat_money_QR" style="font-family:Baloo;color : #464645 ;font-size : 14px; "></span>
+                                        </div>
+                                        <div style=" background-color : #464645; height:1%; "></div>
+                                        <div style=" background-color : white; height:5%; "></div>
+                                        
+                                        <button type="submit" style="background-color: #0B7FC0;
+                                                                color:  rgb(255, 255, 255);
+                                                                border: none;
+                                                                width:  90%;
+                                                                height:  80px;
+                                                                border-radius: 50px;
+                                                                font-family:Baloo;
+                                                                margin-left : 10px ;
+                                                                font-size:14px;"
+                                                        
+                                                        onclick = "location.href='/cashier/create_bill/'"
+                                                >Complete</button>
+                                    </div>
+                                    
+              
+                                </div>
+                            </div>
+                            <!--End Popup -->
+
+                            <!--Popup input money -->
+                            
+                            <div class="popup" id="popup-input">
+                                <div class="overlay"></div>
+                                <div class="content" style="background-color:white; border-radius : 40px; height:25%; width:25%;">
+                                    <div style="  height: 100% ; width : 100% ; display:flex ; flex-direction : column;">
+                                        <div class="close-btn" onclick="togglePopup_input()">&times;</div>
+                                        <div style="height : 40% ; text-align : center ;">
+                                            <span style="font-family:Baloo;color : #464645 ; ">Please enter the amount.</span>
+                                        </div>
+                                        
+                                        <div style=" height : 30% ;  ">
+                                        
+                                             <input  class="form-control"  style="border-radius: 50px; width:  100%; height: 100% ;  margin-top : -5% ; font-size:15px;"
+                                                    name="amount_input" 
+                                                    id="amount"
+                                                    type="text"
+                                                    oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" 
+                                                    placeholder="Enter amount"
+                                             >
+                                        </div>
+                                        <div style=" height : 30% ; display:flex; flex-direction : row ; ">
+                                            <div style="  width : 37.5% ; ">
+                                                {% comment %} <button style="background-color: #464645;
+                                                                color:  rgb(255, 255, 255);
+                                                                border: none;
+                                                                width:  90%;
+                                                                height:  80%;
+                                                                border-radius: 50px;
+                                                                font-family:Baloo;
+                                                                font-size:14px;"
+                                                        onclick="togglePopup_input()"
+                                                        type = "submit"
+                                                >Cancle</button> {% endcomment %}
+                                            </div>
+                                            <div style="   width : 25% ; "></div>
+                                            <div style="  width : 37.5% ; ">
+                                                <button 
+                                                    type="button"
+                                                    id = "button_amount"
+                                                    onclick="togglePopup_input(),togglePopup_cash()"
+                                                    style="background-color: #0B7FC0 ;
+                                                                    color:  rgb(255, 255, 255);
+                                                                    border: none;
+                                                                    width:  90%;
+                                                                    height:  80%;
+                                                                    border-radius: 50px;
+                                                                    font-family:Baloo;
+                                                                    font-size:14px;"
+                                                >Next</button>
+                                            </div>
+                                        </div>
+                                        
+
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!--End Popup -->
+
+                            <!--Popup Cash -->
+                            <div class="popup" id="popup-cash">
+                                <div class="overlay"></div>
+                                <div class="content" style="background-color:white; border-radius : 40px; height:25%; width:25%;">
+                                    <div style="  height: 100% ; width : 100% ; display:flex ; flex-direction : column;">
+                                    <div class="close-btn" onclick="togglePopup_cash()">&times;</div>
+                                        <div style="height : 14% ; text-align : center ;">    
+                                            <span style="font-family:Baloo;color : #87B4E4 ; font-size : 18px ; ">Total</span>
+                                        </div>
+                                        <div style="height : 50% ;text-align : center ; ">
+                                            <span id="total_cash_popup"  style="font-family:Baloo;color : #464645 ; font-size : 28px ; "></span>
+                                        </div>
+                                        <div style="background-color : #464645 ; height : 2% ; "></div>
+                                        <div style="height : 23% ; display:flex; flex-direction : row ; ">
+                                            <div style="width : 20% ;  margin-top : 2% ;">
+                                                <span style="font-family:Baloo;color : #464645 ; font-size : 13px ; ">Receive :</span>
+                                            </div>
+                                            <div style=" width : 30% ; display:flex ;  flex-direction : column ;">
+                                                <div style="background-color : white ; height : 15% ; "></div>
+                                                <div style="background-color : #D4D3D3 ; height : 70% ; margin-top : 5%; border-radius : 20px; display:flex ; justify-content: flex-start;  ">
+                                                    <span name = "money_in" id="total_amount_popup" style="font-family:Baloo;color : #464645 ; font-size : 13px ;margin-left : 10%; " value={{int}}>{{int}}</span>
+                                                </div>
+                                                <div style="background-color : white ; height : 15% ; "></div>
+                                            </div>
+                                            <div style=" width : 20% ; margin-top : 2% ; ">
+                                                <span style="font-family:Baloo;color : #464645 ; font-size : 13px ; ">Change :</span>
+                                            </div>
+                                            <div style=" width : 30% ; display:flex ;  flex-direction : column ;  ">
+                                                <div style="background-color : white ; height : 15% ; "></div>
+                                                <div style="background-color : #D4D3D3 ; height : 70% ; margin-top : 5%; border-radius : 20px; display:flex ; justify-content: flex-start;  ">
+                                                    <span id="total_success" style="font-family:Baloo;color : #464645 ; font-size : 13px ;margin-left : 10%; "></span>
+                                                </div>
+                                                <div style="background-color : white ; height : 15% ; "></div>
+                                            </div>
+                                        </div>
+                                        <div style=" height : 30% ; display:flex; flex-direction : row ; margin-top : 4% ;">
+                                            <div style="  width : 37.5% ; display:flex ; justify-content: flex-start;">
+                                                {% comment %} <button style="background-color: #464645;
+                                                                color:  rgb(255, 255, 255);
+                                                                border: none;
+                                                                width:  90%;
+                                                                height:  100%;
+                                                                border-radius: 50px;
+                                                                font-family:Baloo;
+                                                                font-size:14px;"
+                                                        onclick="togglePopup_cash()"
+                                                >Cancle</button> {% endcomment %}
+                                            </div>
+                                            <div style="   width : 25% ; "></div>
+                                            <div style="  width : 37.5% ;display:flex ; justify-content: flex-end; ">
+                                                
+                                                <button 
+                                                onclick = "location.href='/cashier/create_bill/'"
+                                                style="background-color: #87B4E4 ;
+                                                                color:  rgb(255, 255, 255);
+                                                                border: none;
+                                                                width:  90%;
+                                                                height:  100%;
+                                                                border-radius: 50px;
+                                                                font-family:Baloo;
+                                                                font-size:14px;"
+                                                >Submit</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--End Popup -->
+                            
+                            <!--Popup Money -->
+                            <div class="popup" id="popup-money">
+                                <div class="overlay"></div>
+                                <div class="content"  style="background-color:white; border-radius : 50px; height:30%; width:25%;" >
+                                    <div class="close-btn" onclick="togglePopup_money()">&times;</div>
+                                        <div  style="width:100%; height:30%; display:flex;flex-direction:row">
+                                            <div  style=" width:50%; height:100%; margin-top : 2.2%; ">
+                                                <span style="font-weight: bold; font-family:Baloo; text-align:center;font-size:30px; color : #4F7BBC;">Choose</span>
+                                            </div>
+                                            <div  style="width:50%; height:100%; margin-top : 5%; margin-left : -12%; ">
+                                                <span style="font-family:Baloo;">a payment method</span>
+                                            </div>
+                                        </div>
+                                        <div  style="background-color : black ; width:100%; height:2%;"></div>
+                                        <div  style="background-color : white ; width:100%; height:65%; display:flex;flex-direction:row">
+                                            <div  style="background-color : white ; width:47.5%; height:100%; display:flex; justify-content :flex-end ;">
+                                                <button id="input_amount" onclick="togglePopup_input(),togglePopup_money()" type="button" class="btn btn-primary" style=" margin-top : 10%; margin-right : 10%;height: 100px ;width :100px ; border: none; border-radius: 50px; background: url(https://cdn.discordapp.com/attachments/807134152011939850/817102873505955860/cash.png)"></button>
+                                            </div>
+                                            <div  style="background-color : white ; width:5%; height:100%;"></div>
+                                            <div  style="background-color : white ; width:47.5%; height:100%; display:flex; justify-content :flex-start ; ">
+                                                <button onclick="togglePopup_QR(),togglePopup_money()" type="button" class="btn btn-primary" style=" margin-top : 10%; margin-left : 10%; height: 100px ;width :100px ; border: none; border-radius: 50px; background: url(https://cdn.discordapp.com/attachments/807134152011939850/817102872310841384/QR.png)"></button>
+                                            </div>
+                                        </div>
+                            <!--End Popup -->
+                                    
+                            
+                                    
+                                   
+                                </div>
+                            </div>
+                            
+                            <button
+                            id = "pay_method"
+                            onclick="togglePopup_money()" 
+                            type="button" 
+                            style="background-color: rgb(78, 78, 78) ; 
+                            width:400px;height:100px; 
+                            border:none; 
+                            font-size:30px; 
+                            font-family:Baloo;
+                            color : white ;
+                            margin-top : 16px;
+                            box-shadow: 0 5px 5px 0 rgba(153, 153, 153, 0.24),0 5px 5px 0 rgba(153, 153, 153, 0.24);"  
+                            >Payment</button>
+                        </div>
+                        </form>
+                    </div>
+                    <div id="space1"></div>
+                </div>
+                {% comment %} <input name="input_number" type="number"  value=123 disabled > {% endcomment %}
+                
+            </div>
+        
+        <script>
+        submitForms = function(){
+    document.getElementById("form1").submit();
+     
+
+    }
+            function togglePopup_money(){
+                document.getElementById("popup-money").classList.toggle("active");
+            }
+
+            function togglePopup_cash(){
+                document.getElementById("popup-cash").classList.toggle("active");
+            }
+
+            function togglePopup_input(){
+                document.getElementById("popup-input").classList.toggle("active");
+            }
+
+            function togglePopup_QR(){
+                document.getElementById("popup-QR").classList.toggle("active");
+            }
+        </script>
+
+        <!-- total money  -->
+        <!-- cal price here  -->
+        <script>
+            var totalp = $("#cal").text();
+            $('#total_money').text(totalp); 
+        </script> 
+        <!-- end total money -->
+
+
+        <!-- amount to madal -->
+        <script type="text/javascript"> 
+        $("#button_amount").click(function () { 
+            var total_amount = $("#amount").val();
+            $("#total_amount_popup").html(total_amount); 
+        }); 
+        </script> 
+        <!-- end amount to madal -->
+
+        <!-- amount to madal -------------------------------------------------------------------------->
+        <script type="text/javascript"> 
+        $("#pay_method").click(function () { 
+            var total_input_amount = $("#total_money").text();
+            document.getElementById("amount").defaultValue = total_input_amount ;
+        }); 
+        </script> 
+        <!-- end amount to madal -->
+
+
+        <!-- total money to madal -->
+        <script type="text/javascript"> 
+        $("#button_amount").click(function () { 
+            var total = $("#total_money").text();
+            var total_amount = $("#amount").val();
+
+            let float_total = parseFloat(total);
+            let float_amount = parseFloat(total_amount);
+            
+            let calculator = float_amount - float_total ;
+            var test = calculator ;
+
+            $("#total_cash_popup").html(total); 
+            $("#total_success").html(test); 
+        }); 
+        </script> 
+        <!-- end total money to madal -->
+
+
+        <!-- amount to madal Qr -->
+        <script type="text/javascript"> 
+        $("#pay_method").click(function () { 
+            var total = $("#total_money").text();
+            var str = total + " Bath" ;
+            $("#totat_money_QR").html(str); 
+        }); 
+        </script> 
+        <!-- end amount to madal Qr -->
+
+
+        <!-- QRCode -->
+        <script type="text/javascript">
+        // get QR-dom
+        var qr_dom = document.getElementById('qrcode');
+        // render QR function
+        function render_qr(){
+            var amount = document.getElementById('total_money').textContent;
+            var amount2 = parseInt(amount);
+            var txt = PromptPayQR.gen_text("0628019565", amount2);
+
+            qr_dom.innerHTML = "";
+            if(txt){
+            new QRCode(qr_dom, txt);
+            }
+        }
+        // bind acc_id, amount
+        document.getElementById('pay_method').addEventListener('click', render_qr, true);
+        </script>
+        <!-- End QRCode -->
+
+        <script>
+        var dt = new Date();
+        document.getElementById("datetime").innerHTML = dt.toLocaleString();
+        </script>
+        
+        <script>
+        var dt = new Date();
+        document.getElementById("datetime2").innerHTML = dt.toLocaleString();
+        </script>
+
+        <script type="text/javascript"> 
+        $("#input_member").click(function () { 
+            var total_amount = $("#phone").val();
+            var arr=["total_amount"]
+            var myJSON = JSON.stringify(total_amount);
+            document.getElementById("input_phone").innerHTML = myJSON;
+        }); 
+        </script>
+        
+        </body>
+</html>
+
+

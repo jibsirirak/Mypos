@@ -1,0 +1,235 @@
+.flex-container {
+    display: flex;
+    background-color: DodgerBlue;
+    height : 100% ;
+    flex-direction:column;
+}
+
+#tab {
+    display: flex;
+    background-color: rgb(49, 49, 49);
+    width: 100%;
+    height: 12%;
+    flex-direction:  row;
+}
+
+#space {
+    display: flex;
+    background-color: #c7c7c7;
+    width: 100%;
+    height: 3%;
+}
+
+#block {
+    display: flex;
+    background-color: #c7c7c7;
+    width: 100%;
+    height: 85%;
+    flex-direction:row
+}
+
+#space1 {
+    display: flex;
+    background-color: #c7c7c7;
+    width: 1.5%;
+    height: 97%;
+}
+
+#cashier {
+    display: flex;
+    background-color: rgb(255, 255, 255);
+    width: 25.5%;
+    height: 97%;
+    flex-direction:column ;
+}
+#space2 {
+    display: flex;
+    background-color: #c7c7c7;
+    width: 1%;
+    height: 97%;
+}
+
+#summary {
+    display: flex;
+    background-color: white;
+    width: 70.5%;
+    height: 97%;
+    flex-direction:column ;
+}
+
+#sum {
+    display: flex;
+    /* background-color: aqua; */
+    width: 100%;
+    height: 82%;
+    flex-direction: column;
+}
+#space3 {
+    display: flex;
+    background-color: #c7c7c7;
+    width: 100%;
+    height: 3%;
+}
+#cash {
+    display: flex;
+    background-color: white;
+    width: 100%;
+    height: 15%;
+}
+
+.fild {
+    background-color: #D9E8FF;
+    color:  #ffffff;
+    border: none;
+    width:  50%;
+    height:  40%;
+    border-radius: 50px;
+    font-family:Baloo;
+    font-size:12px;
+  }
+
+  #button {
+    background-color: white;
+    color:  #818181;
+    border: none;
+    width:  35;
+    height:  35;
+    border-radius: 17.5px;
+    font-family:Baloo;
+    font-size:12px;
+  }
+
+
+  #text { 
+	color:rgb(87, 87, 87);
+	font-family:Baloo;
+	text-align:left;
+	font-size:13px;
+}
+
+#time { 
+	color:rgb(94, 94, 94);
+	font-family:Baloo;
+	text-align:left;
+	font-size:20px;
+}
+
+
+.button_logout {
+    background-color: rgb(78, 78, 78);
+    color:  rgb(255, 255, 255);
+    border: none;
+    width:  90%;
+    height:  100%;
+    border-radius: 50px;
+    font-family:Baloo;
+    font-size:12px;
+    transition-duration: 0.4s;
+  }
+  
+  .button_logout:hover {
+    background-color: rgb(255, 255, 255);
+    color:  #87B4E4;
+    border: none;
+    width:  90%;
+    height:  100%;
+    border-radius: 50px;
+    font-size:12px;
+    box-shadow: 0 5px 5px 0 rgba(153, 153, 153, 0.24),0 5px 5px 0 rgba(153, 153, 153, 0.24);
+  }
+  .button_logout2 {
+    background-color: rgb(78, 78, 78);
+    color:  rgb(255, 255, 255);
+    border: none;
+    width:  90%;
+    height:  100%;
+    border-radius: 50px;
+    font-family:Baloo;
+    font-size:12px;
+    transition-duration: 0.4s;
+  }
+  
+  .button_logout2:hover {
+    background-color: rgb(255, 255, 255);
+    color:  #87B4E4;
+    border: none;
+    width:  90%;
+    height:  100%;
+    border-radius: 50px;
+    font-size:12px;
+    box-shadow: 0 5px 5px 0 rgba(153, 153, 153, 0.24),0 5px 5px 0 rgba(153, 153, 153, 0.24);
+  }
+
+
+#space10{
+    background-color :  white ; 
+    width:100%; 
+    height:12.5%; 
+    text-align:center;
+    flex-direction: column;
+}
+#sum_product{
+    display: flex;
+    flex-direction: row;
+    background-color : black ; 
+    width:100%; 
+    height:63.5%;
+}
+#sum_total{
+    display: flex;
+    flex-direction: row;
+    background-color : white ; 
+    width:100%; 
+    height:12%;
+}
+#sum_price{
+    display: flex;
+    flex-direction: column;
+    background-color : white ; 
+    width:54%; 
+    height:100%;
+    text-align: right;
+    margin-top: 6%;
+}
+#sum_use{
+    display: flex;
+    flex-direction: row;
+    /* background-color : brown ;  */
+    width:100%; 
+    height:7%;
+}
+#block_use{
+    display: flex;
+    /* align-items: flex-end; */
+    background-color : Black ; 
+    width:54%; 
+    height:100%;
+}
+#text { 
+	color:white;
+	font-family:Baloo;
+	/* text-align:left; */
+	font-size:10px;
+}
+.button_cashier {
+    background-color: white;
+    color:  #818181;
+    border: none;
+    width:  12%;
+    height:  50%;
+    border-radius: 50px;
+    font-family:Baloo;
+    font-size:12px;
+    transition-duration: 0.4s;
+  }
+
+  .button_cashier:hover {
+    background-color: rgba(135.158853828907, 180.2260771393776, 228.4374949336052, 1);
+    color:  #ffffff;
+    box-shadow: 0 5px 5px 0 rgba(153, 153, 153, 0.24),0 5px 5px 0 rgba(153, 153, 153, 0.24);
+    width:  12%;
+    height:  50%;
+    border-radius: 50px;
+    font-family:Baloo;
+    font-size:12px;
+  }

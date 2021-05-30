@@ -1,0 +1,340 @@
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Add Member</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://fonts.googleapis.com/css?family=Baloo&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+        <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.js"></script>
+</head>
+<style>
+    .flex-container
+{
+    display: flex;
+    flex-direction: column;
+    /* background-color: #838383; */
+    width:  100%;
+    height:  100%;
+  }
+  .main
+{
+    display: flex;
+    flex-direction: column;
+    /* background-color: #838383; */
+    margin-top: 7px;
+    width:  100%;
+    height:  100%;
+  }
+  .top
+  {
+    text-align:center;
+    display: flex;
+    width:  100%;
+    height:  15%;
+    /* background-color: #87B4E4; */
+
+  }
+  .popup .overlay {
+                position:fixed;
+                top:0px;
+                left:0px;
+                width:100vw;
+                height:100vh;
+                background:rgba(0,0,0,0.7);
+                z-index:1;
+                display:none;
+                }
+                
+                .popup .content {
+                position:absolute;
+                top:50%;
+                left:50%;
+                transform:translate(-50%,-50%) scale(0);
+                background:#fff;
+                width:400px;
+                height:450px;
+                z-index:2;
+                text-align:center;
+                padding:20px;
+                box-sizing:border-box;
+                font-family:"Open Sans",sans-serif;
+                }
+                
+                .popup .close-btn {
+                cursor:pointer;
+                position:absolute;
+                right:20px;
+                top:20px;
+                width:30px;
+                height:30px;
+                background:#222;
+                color:#fff;
+                font-size:25px;
+                font-weight:600;
+                line-height:30px;
+                text-align:center;
+                border-radius:50%;
+                }
+                
+                .popup.active .overlay {
+                display:block;
+                }
+                
+                .popup.active .content {
+                transition:all 300ms ease-in-out;
+                transform:translate(-50%,-50%) scale(1);
+                }
+  .upper
+  {
+    display: flex;
+    width:  100%;
+    height:  70px;
+    background-color: rgb(49,49,49);
+  }
+  .mid
+  {
+    display: flex;
+    width:  80%;
+    height:  600px;
+    margin:auto;
+    border: solid #b3b3b3;
+    border-radius: 2%;
+
+    flex-direction: column;
+  }
+  input {  
+  border: 2px solid #eee;
+  border-radius: 4px;
+}
+input:valid,
+input:in-range {  
+  border-color: green;
+}
+input:invalid,
+input:out-of-range {
+  border-color: red;  
+}
+  .botleft
+  {
+    display: flex;
+    margin-top: 1%;
+    width:  50%;
+    height:  70%;
+    justify-content: flex-start;
+  }
+  .botright
+  {
+    display: flex;
+    margin-top: 1%;
+    width:  50%;
+    height:  70%;
+    margin-right: 3%;
+    justify-content: flex-end;
+
+  }
+  .bot
+  {
+    display: flex;
+    width:  100%;
+    height:  10%;
+    flex-direction: row;
+  }
+  .text1
+  {
+    display: inline;
+    text-align:center;
+    width:  100%;
+    height:  16%;
+  }
+  .container {
+    width: 100%;
+    margin: 1% auto; 
+
+}
+.text2
+  {
+    display: flex;
+    width:  100%;
+    height:  7%;
+
+  }
+  .text3
+  {
+    display: flex;
+    width:  100%;
+    height:  15%;
+    margin-left: 4%;
+  }
+
+
+</style>
+<div class = 'flex-container'>
+  <div class = "upper"></div>
+    <div class="main">
+      <form id = "form1" action = "/product/add_product/" method="POST">
+        {% csrf_token %}
+        <div class="mid">
+        
+            <div class="text1">
+                <span style="font-family: Baloo; font-size: 20">Product Barcode : </span>
+                <input type="text" style="width:52%;height: 30%; margin-top: 2%;" name="Barcode" value="{{item.Barcode_ID}}" min="13" maxlength="13" required>
+            </div>
+            <div class="text1">
+                <span style="font-family: Baloo; font-size: 20">Name : </span>
+                <input type="text" style="width:60%;height: 30%;" name="name" value="{{item.Name}}"required>
+            </div>
+            <div class="text1">
+                <span style="font-family: Baloo; font-size: 20">Size : </span>
+                <input class="form-check-input" id="XS" type="radio" name="inlineRadioOptions" value="XS"  >
+                <span class="form-check-span" for="inlineRadio1" style="font-family: Baloo; font-size: 20; margin-left: 2%;">XS</span>
+                <input class="form-check-input" id="S" type="radio" name="inlineRadioOptions" value="S" >
+                <span class="form-check-span" for="inlineRadio1"style="font-family: Baloo; font-size: 20; margin-left: 2%;" >S</span>
+                <input class="form-check-input" id="M" type="radio" name="inlineRadioOptions" value="M" >
+                <span class="form-check-span" for="inlineRadio1"style="font-family: Baloo; font-size: 20; margin-left: 2%;" >M</span>
+                <input class="form-check-input" id="L" type="radio" name="inlineRadioOptions" value="L" >
+                <span class="form-check-span" for="inlineRadio1" style="font-family: Baloo; font-size: 20; margin-left: 2%;">L</span>
+                <input class="form-check-input" id="XL" type="radio" name="inlineRadioOptions" value="XL" >
+                <span class="form-check-span" for="inlineRadio1" style="font-family: Baloo; font-size: 20; margin-left: 2%;">XL</span>
+                <input class="form-check-input" id="2XL" type="radio" name="inlineRadioOptions" value="2XL" >
+                <span class="form-check-span" for="inlineRadio1"style="font-family: Baloo; font-size: 20; margin-left: 2%;" >2XL</span>
+                <input class="form-check-input" id="Free size" type="radio" name="inlineRadioOptions" value="Free size" >
+                <span class="form-check-span" for="inlineRadio1" style="font-family: Baloo; font-size: 20; margin-left: 2%;">Free size</span>
+            </div>
+            <div class="text1">
+                <span style="font-family: Baloo; font-size: 20">Color: </span>
+                <input type="text" style="width:10%;height: 30%;" name="color" value="{{item.Color}}">
+                <span style="margin-left: 11%;font-family: Baloo; font-size: 20" >Type: </span>
+                <input type="text" style="width:10%;height: 30%;" name="type" value="{{item.Type}}">
+                <span style="margin-left: 11%;font-family: Baloo; font-size: 20">Model: </span>
+                <input type="text" style="width:10%;height: 30%;" name="model" value="{{item.Model}}">
+            </div>
+            <div class="text1"style="text-align:left;margin-left: 4.5%;">
+                <span style="font-family: Baloo; font-size: 20"pattern="[a-zA-Z]*">Cost : </span>
+                <input type="number" style="width:25%;height: 30%;margin-left: 1%;" min="1" name="cost" value="{{item.Cost}}" required>
+                <span style="font-family: Baloo; font-size: 20">THB </span>
+            </div>
+            <div class="text3" >
+                <span style="font-family: Baloo; font-size: 20">Price : </span>
+                <input type="number" style="width:25%;height: 25px;margin-left: 1%;"min="1" id = "price" name="price" value="{{item.Price}}" required> 
+                <span style="font-family: Baloo; font-size: 20">THB </span>
+                <span style="font-family: Baloo; font-size: 12">+VAT 7% </span>
+
+                
+                {% if a == True %}
+                  <div style="width: 700px; height: 100%;">
+                {% else %}
+                  <div hidden>
+                {% endif %}
+                <span style="font-family: Baloo; font-size: 20;margin-left: 5%;">VAT 7% : </span>
+                <input type="text" style="width:100px;height: 30%;background-color: gray;border: none" id="vat1"name="vat1" value="{{item.VAT}}" readonly>
+                <span style="font-family: Baloo; font-size: 20">THB </span>
+                <span style="font-family: Baloo; font-size: 20;margin-left: 2%;">Exclude VAT : </span>
+                <input type="text" style="width:100px;height: 30%; background-color: gray; border: none;" id="ex-vat1" name="ex-vat1" value="{{item.Excluding_VAT}}"readonly>
+                <span style="font-family: Baloo; font-size: 20">THB </span>
+                 </div>
+              </div>
+            
+            <!-- <div class="text2">
+                <button type="button"  class="btn btn-success btn-rounded" style="font-family: Baloo; margin-left: 12%;margin-top: 0.5%; width: 100px; border-radius: 50px; background-color: #4F7BBC; border: none">Check</button>
+            </div> -->
+        
+        </div>
+        <div class="bot">
+            <div class="botleft">
+                <a href="/product/">
+                    <button type="button"  class="btn btn-success btn-rounded" style="font-family: Baloo; margin-left: 10%; width: 200px;height: 40px; border-radius: 50px; background-color: #2b313a; border: none;">Cancle</button>
+                </a>
+            </div>
+            <div class="botright">
+                <a><div class="popup" id="popup_Save">
+                  <div class="overlay"></div>
+              <div class="content" style="background-color:white; border-radius : 40px; height:25%; width:25%;">
+                  <div style="  height: 100% ; width : 100% ; display:flex ; flex-direction : column;">
+                      <div style=" height : 40% ; text-align : center ;">
+                          <h1 style="font-family:Baloo;color : #5cb85c ; ">Submit</h1>
+                      </div>
+                      <div style=" height : 30% ;  ">
+                          <span style="font-family:Baloo;color : #464645 ; font-size : 16px ; ">Are you sure to save a change ?</span>
+                      </div>
+                      <div style=" height : 30% ; display:flex; flex-direction : row ; ">
+                          <div style="  width : 37.5% ; ">
+                              <button style="background-color: #464645;
+                                              color:  rgb(255, 255, 255);
+                                              border: none;
+                                              width:  90%;
+                                              height:  80%;
+                                              border-radius: 50px;
+                                              font-family:Baloo;
+                                              font-size:14px;"
+                                      onclick="togglePopup_Save()"
+                              >Cancle</button>
+                          </div>
+                          <div style="   width : 25% ; "></div>
+                          <div style="  width : 37.5% ; ">
+                              <button style="background-color: #5cb85c ;
+                                              color:  rgb(255, 255, 255);
+                                              border: none;
+                                              width:  90%;
+                                              height:  80%;
+                                              border-radius: 50px;
+                                              font-family:Baloo;
+                                              font-size:14px;"
+                                              onclick="submit()"
+                              >Yes</button>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              
+          </div>
+          <input type="button" name="submit" class="btn btn-success btn-lg" value="Submit" class="btn btn-success btn-lg" onclick="togglePopup_Save()" style="font-family:Baloo;border-radius: 15px;width: 200px;height: 40px;border-radius: 50px; border:none; font-size:14px;margin-left: 15%;"/>                        
+         
+          <script>
+          function togglePopup_Save(){
+          document.getElementById("popup_Save").classList.toggle("active");
+          document.getElementById("vat1").value = Math.round((parseFloat(document.getElementById("price").value) * 0.07).toFixed(2));
+          document.getElementById("ex-vat1").value = (parseFloat(document.getElementById("price").value) -parseFloat(document.getElementById("vat1").value));
+        
+          }
+          function togglePopup_success(){
+          document.getElementById("popup_success").classList.toggle("active");
+          setTimeout(function(){document.getElementById("popup_success").classList.toggle("active");}, 800);
+          }
+          </script>
+      <!-- endpopup Save -->
+                    <!-- <button type="submit" onclick = "submitform() " class="btn btn-success btn-rounded" style="font-family: Baloo; margin-left: 10%; width: 200px;height: 40px; border-radius: 50px; background-color: #04b849; border: none;">Submit</button> -->
+                </a>
+                </div>
+        </div>
+      </form>
+    </div>
+    
+</div>
+
+<script>
+    var size = "{{item.Size}}";
+    document.getElementById(size).checked = true;
+    // function check() 
+    // {
+    //   print("PASS_VAT")
+    //   document.getElementById("vat").value = Math.round((parseFloat(document.getElementById("price").value) * 0.07))
+    //   document.getElementById("ex-vat").value = (parseFloat(document.getElementById("price").value) -parseFloat(document.getElementById("vat").value));
+    //   }
+    function submitform(){
+         document.getElementById("vat1").value = Math.round((parseFloat(document.getElementById("price").value) * 0.07).toFixed(2));
+         document.getElementById("ex-vat1").value = (parseFloat(document.getElementById("price").value) -parseFloat(document.getElementById("vat1").value));
+        // document.getElementById("form1").submit();
+        
+    }
+</script>
+
+</html>

@@ -1,0 +1,91 @@
+{% load static %}
+<html lang="en">
+        <head>
+            <meta charset="utf-8">
+            <title>Employee</title>
+            <meta name="description" content="Figma htmlGenerator">
+            <meta name="author" content="htmlGenerator">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <link href="https://fonts.googleapis.com/css?family=Baloo&display=swap" rel="stylesheet">
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+            <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+            <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+            <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+            <link rel="stylesheet" href="/path/to/cdn/bootstrap.min.css" />
+            <link rel="stylesheet" href="/path/to/bootstrap-steps.min.css" />
+
+            <link rel="stylesheet" href="{% static 'style.css' %}">
+            <style>
+            </style>
+          
+        </head>
+          
+        <body>
+            <div class="flex-container">
+                <div id="tab">
+                  <div class="container">
+                    
+
+                  </div>
+                </div>
+
+                <div id="space">
+                    <div id="blank">
+
+                    </div>
+
+                    <div id="center">
+                        <div class="container">
+                            <form   action="/regis/" method="POST" class="form-inline"  style="margin-left: -20%;">
+                                {% csrf_token %}
+                            <label class="form-label">Role : </label>
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" value="Admin">
+                            <label class="form-check-label" for="inlineRadio1">Admin</label>
+                          
+                          
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" value="Finance" style="margin-left: 1%;">
+                            <label class="form-check-label" for="inlineRadio2">Finance</label>
+                          
+                          
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" value="Cashier" style="margin-left: 1%;">
+                            <label class="form-check-label" for="inlineRadio2">Cashier</label>
+                            
+                            <label class="form-label" style="margin-left: 3%;">Email :</label>
+                            <input type="text" class="form-control" style="margin-left: 1%;" name="username">
+                                    
+                            <label class="form-label" style="margin-left: 3%;">phonenumber :</label>
+                            <input type="text" class="form-control" style="margin-left: 1%;" name="phonenumber">
+
+                            <label class="form-label" style="margin-left: 3%;">Password :</label>
+                            <input type="password" class="form-control" style="margin-left: 1%;" name='password'>
+                                     
+                            <label class="form-label" style="margin-left: 3%;">Enter Password :</label>
+                            <input type="password" class="form-control" style="margin-left: 1%;" name='repassword'>
+                            <button >Enter</button>
+                            </form>
+                            
+                        </div>
+                    </div>
+
+                    <div id="blank">
+
+                    </div>
+                </div>
+
+                <div id="block">
+                    <div id="halfleft" class="container"> 
+                        
+                    </div>
+
+                    <div id="halfright" class="container">
+                        
+                    </div>
+                    
+                </div>
+            </div>
+        </body>
+</html>
+
+

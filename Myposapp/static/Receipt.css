@@ -1,0 +1,159 @@
+#invoice-POS{
+  box-shadow: 0 0 1in -0.25in rgba(0, 0, 0, 0.5);
+  padding:2mm;
+  margin: 0 auto;
+  width: 70mm;
+  background: #FFF;
+  
+}
+::selection {background: #f31544; color: #FFF;}
+::moz-selection {background: #f31544; color: #FFF;}
+h1{
+  font-size: 1.5em;
+  color: #222;
+}
+h2{font-size: .9em;}
+
+h3{
+  font-size: 1.2em;
+  font-weight: 300;         
+  line-height: 2em;
+}
+p{
+  font-size: .7em;
+  color: #666;
+  line-height: 1.2em;
+}
+.container {
+  display:flex;
+  flex-direction: row;
+}
+p1{
+  font-size: .7em;
+  color: #666;
+  line-height: 1.2em;
+  margin-top: 5px;
+}
+ 
+#top, #mid,#bot{ /* Targets all id with 'col-' */
+  border-bottom: 1.5px solid rgb(48, 48, 48);
+}
+
+#top{min-height: 80px;}
+#mid{min-height: 80px;} 
+#bot{ min-height: 50px;}
+
+#top .logo
+{ float: left;
+	height: 60px;
+	width: 60px;
+	background: url(https://cdn.discordapp.com/attachments/807134152011939850/811626088198832158/LogoGroup.png) no-repeat;
+	background-size: 60px 38px;
+  margin-top: 10px ;
+  margin-left: 10px;
+}
+.info{
+  display: block;
+  float:left;
+  margin-left: 0;
+}
+.title{
+  float: right;
+}
+.title p{text-align: right;} 
+table{
+  width: 100%;
+  border-collapse: collapse;
+}
+td{
+  padding: 5px 5px 5px 0px; 
+  border: 1px solid rgb(182, 182, 182);
+  text-align: right;
+}
+td2{
+  padding: 5px 5px 5px 0px; 
+  text-align: right;
+}
+.tabletitle{
+  padding: 5px;
+  font-size: .5em;
+  background: rgb(255, 255, 255);
+  
+}
+.payment2{
+  font-size: 1px;
+  color: #222;
+}
+.service{border-bottom: 1px solid #EEE;}
+.item{width: 20mm;}
+.code{width: 15mm;}
+.itemtext{font-size: .5em;}
+.button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+@media print {
+    .hidden-print,
+    .hidden-print * {
+        
+        display: none !important;
+        
+    }
+    
+}
+#head_bar_right { 
+  color: greenyellow;
+  height: 5%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+#legalcopy{
+  /* margin-top: 5mm; */
+  margin-left: 3mm;
+  font-size: 15px;
+}
+
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}

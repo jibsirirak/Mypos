@@ -1,0 +1,164 @@
+{% extends 'layout_finance.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" type="text/css"  href="{% static 'promotion_member_discount.css' %}">
+<div class="flex-container">
+    <div class="flex-container2">
+        <div style="background-color:#F3F3F3; height:20%; width: 99%; margin-left: 0.5% ;" >
+
+           <CENTER>
+               <div>
+                <P style = "font-family:Baloo; font-size: 50px; color : #464645 ; height: 40%; margin-top: 10px;" >Daily Report
+                </div>
+                <div>
+                <P style = " font-family:Baloo; font-size: 20px; color : #8E8C8C ;" >Opened at 18:30 AM, January 21 2021 by 000121
+                </div>
+                
+                    
+                </CENTER>
+
+        </div>
+
+        <div style=" height:15%; width: 86%; margin-left: 7% ; margin-top: 20px; " >
+            
+            <div style="float:left ;  width: 33.3%; height: 100%; ">
+                <CENTER>
+                <div style=" height: 10%;  ">
+                <P style = "font-family:Baloo; font-size: 20px; color : #8E8C8C ; " >Total Net Sales
+                </div>
+                <div style=" height: 60%; ">
+                <P style = " font-family:Baloo; font-size: 40px; color : #8E8C8C ; color : #6EA6E2 ; " >{{Total_Net_Sales}} THB
+                </div>
+                </CENTER>    
+            </div>
+            <div style="float:left ;  width:33.3%; height: 100%; ">   
+                <CENTER>
+                <div style=" height: 10%;  ">
+                <P style = "font-family:Baloo; font-size: 20px; color : #8E8C8C ;" >Transactions
+                </div>    
+                <div style=" height: 60%; ">
+                <P style = " font-family:Baloo; font-size: 40px; color : #8E8C8C ; color : #6EA6E2 ;" >{{Transactions}}
+                </div>
+                </CENTER>    
+            </div>        
+            <div style="float:left ;  width: 33.3%; height: 100%; ">   
+                <CENTER>
+                <div style=" height: 10%;  ">
+                <P style = "font-family:Baloo; font-size: 20px; color : #8E8C8C ;" >Profits
+                </div>
+                <div style=" height: 60%; ">
+                <P style = " font-family:Baloo; font-size: 40px; color : #8E8C8C ; color : #6EA6E2 ;" >{{Profits}} THB
+                </div>        
+                </CENTER>
+            </div>
+        </div>
+
+        <div style=" height:10px; width: 86%; margin-left: 7% ;" ></div>
+
+        <div style=" height:30px; width: 86%; margin-left: 7% ;" >
+
+            <CENTER>
+                <P style = " font-family:Baloo; font-size: 20px; color : #8E8C8C ;" >Summary
+            </CENTER>
+
+        </div>
+
+        <div style=" height:10px; width: 86%; margin-left: 7% ;" ></div>
+
+        <div style=" height:50%; width: 94%; margin-left: 3% ;" >
+            <div style="background-color:#E6E6E6; height:16.6666666667%; width: 90%; margin-left: 5% ;" >
+                <div style="float:left ; background-color:#E6E6E6; width: 50%; height: 100%; ">
+                    <div style="background-color:#E6E6E6; height: 15px;"></div>
+                    <P Align=left style = " font-family:Baloo; font-size: 17px; color : #8E8C8C ; margin-left: 100px;" >Gross Sales
+                </div>
+                
+                <div>
+                    <div style="background-color: #E6E6E6; height: 15px;"></div>
+                    <P Align=right style = " font-family:Baloo; font-size: 17px; color : #8E8C8C ; margin-right: 100px;" >{{Gross_Sales}} THB    
+                </div>
+            </div>
+
+            <div style=" height:16.6666666667%; width: 90%; margin-left: 5% ;" >
+
+                <div style="float:left ;  width: 50%; height: 100%; ">
+                    <div style=" height: 15px;"></div>
+                    <P Align=left style = " font-family:Baloo; font-size: 17px; color : #8E8C8C ; margin-left: 100px;" >Discount
+                </div>
+                
+                <div>
+                    <div style=" height: 15px;"></div>
+                    <P Align=right style = " font-family:Baloo; font-size: 17px; color : #8E8C8C ; margin-right: 100px;" >{{Discount}} THB      
+                </div>
+
+            </div>
+
+            <div style="background-color:#E6E6E6; height:16.6666666667%; width: 90%; margin-left: 5% ;" >
+
+                <div style="float:left ; background-color:#E6E6E6; width: 50%; height: 100%; ">
+                    <div style="background-color: #E6E6E6; height: 15px;"></div>
+                    <P Align=left style = " font-family:Baloo; font-size: 17px; color : #8E8C8C ; margin-left: 100px;" >Net Sales
+                </div>
+                
+                <div>
+                    <div style="background-color: #E6E6E6; height: 15px;"></div>
+                    <P Align=right style = " font-family:Baloo; font-size: 17px; color : #8E8C8C ; margin-right: 100px;" >{{Net_Sales}} THB   
+                </div>
+
+            </div>
+
+            <div style=" height:16.6666666667%; width: 90%; margin-left: 5% ;" >
+
+                <div style="float:left ;  width: 50%; height: 100%; ">
+                    <div style=" height: 15px;"></div>
+                    <P Align=left style = " font-family:Baloo; font-size: 17px; color : #8E8C8C ; margin-left: 100px;" >Refund
+                </div>
+                
+                <div>
+                    <div style=" height: 15px;"></div>
+                    <P Align=right style = " font-family:Baloo; font-size: 17px; color : #8E8C8C ; margin-right: 100px;" >-   
+                </div>
+
+            </div>
+
+            <div style="background-color:#E6E6E6; height:16.6666666667%; width: 90%; margin-left: 5% ;" >
+
+                <div style="float:left ; background-color:#E6E6E6; width: 50%; height: 100%; ">
+                    <div style="background-color: #E6E6E6; height: 15px;"></div>
+                    <P Align=left style = " font-family:Baloo; font-size: 17px; color : #8E8C8C ; margin-left: 100px;" >Tax 7%
+                </div>
+                
+                <div>
+                    <div style="background-color: #E6E6E6; height: 15px;"></div>
+                    <P Align=right style = " font-family:Baloo; font-size: 17px; color : #8E8C8C ; margin-right: 100px;" >{{Tax}} THB   
+                </div>
+
+            </div>
+
+            <div style="background-color:#C8C8C8; height:16.6666666667%; width: 90%; margin-left: 5% ;" >
+
+                <div style="float:left ; background-color:C8C8C8; width: 50%; height: 100%; ">
+                    <div style="background-color: C8C8C8; height: 12px;"></div>
+                    <P Align=left style = " font-family:Baloo; font-size: 20px; color : black ; margin-left: 100px;" >Total
+                </div>
+                
+                <div>
+                    <div style="background-color: C8C8C8; height: 12px;"></div>
+                    <P Align=right style = " font-family:Baloo; font-size: 20px; color : #464645 ; margin-right: 100px;" >{{Total_Net_Sales}} THB 
+                </div>
+
+            </div>
+
+        
+        
+        
+        
+        
+        </div>
+
+       
+
+
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'layout_admin.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'history_promotion.css' %}">
+
+<div class = 'view'>
+    <div class="flex1" >
+        <h3 style="font-family:Baloo;">History  Promotion</h3> 
+    </div>
+    <hr style="margin-top: -2px; width: 90%;margin-left: 3.5%; height: 2px;background-color:rgb(100, 98, 98)">
+    <div class="flex2">
+        <div class="flex4">
+            <table class="table table-hover" style="font-family: Baloo;  ">
+                <thead>
+                    <tr style="font-size: 18px; ">
+                        <th scope="col" >Date</th>
+                        <th scope="col"class='font'>Promotion Name</th>
+                        <th scope="col">Type</th>
+                        <th scope="col">By</th>
+                        <th scope="col">Status</th>
+                    </tr>
+                </thead>
+                <tbody  style="font-size: 15px; color: #8E8C8C;">
+                    {% for jd in err %} 
+                    <tr>
+                        <th scope="row">{{jd.start_date}} - {{jd.end_date}}</th>
+                        <td>{{jd.name}} </td>
+                        <td>{{jd.types}}}</td>
+                        <td >{{jd.by}}</td>
+                        <td>{{jd.status}}</td>
+                        
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        
+    </div>
+
+    
+    <div class="flex3">
+        <div class="flex5">
+             <a href="/membership_promotion/" class="backbn" style="text-decoration:none; text-align: center;" ><p style="padding-top: 5%">Back</p></a>
+        </div>
+     
+    </div>
+     
+
+</div>
+{% endblock %}

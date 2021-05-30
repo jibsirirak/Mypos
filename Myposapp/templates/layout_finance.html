@@ -1,0 +1,69 @@
+{% load static %}
+<html lang="en">
+          <head>
+            <meta charset="utf-8">
+            <title>My POS</title>
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <link href="https://fonts.googleapis.com/css?family=Baloo&display=swap" rel="stylesheet">
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+            <s src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></s>
+            <link rel="stylesheet" type="text/css" href="{% static 'layout_finance.css' %}">
+            <style>
+            </style>
+          
+          </head>
+          
+            <body>
+                <div class="flex-container">
+                    <div id="left">
+                        <div  id = "head_bar_left">
+                            <div id = "pass1" >
+                                <div id="logo" style=" margin-top:5%;  margin-left:7%;">
+                                <img src="https://media.discordapp.net/attachments/807134152011939850/811626088198832158/LogoGroup.png" width= 110% height=110% >
+                            </div>
+                            <div id="icon" style=" margin-top:3%;  margin-left:1%;">
+                                <img src="https://media.discordapp.net/attachments/807134152011939850/811626090858545172/Woman-Girl-Lady-Female-Person-People-Avatar-512_1.png" width= 120% height=120% >
+                            </div>
+                            </div>
+                            <div id = "pass2" >
+                                <span id="text"  style="margin-left:7.5%;" >User :</span>
+                                <span id="text"  style="margin-left:1%;" >000120</span>
+                            </div>
+                            <div id = "pass3" >
+                                <span id="admin"   >Finance</span>
+                            </div>
+                            <div id = "pass4" >
+                                <span id="time"  >2/18/2021  12:02 AM</span>
+                            </div>
+                        </div>
+
+                        <div  id = "manu">
+                        <a href="/finance/"><button class="button"  style="margin-top:2%;  margin-left:5%;">Sales Report</button></a>
+                        <a href="/daily_report/"><button class="button"  style="margin-top:2%;  margin-left:5%;">Daily Report</button></a>
+                        <a href="/sales_history/"><button class="button"  style="margin-top:2%;  margin-left:5%;">Sales History </button></a>
+                        <a href="/document/"><button class="button"  style="margin-top:2%;  margin-left:5%;">Document</button></a>
+
+                        <a href="/logout/"><button class="button_logout" style="margin-top:170%;  margin-left:5%;">Logout</button></a>
+                        </div>
+                    </div>
+
+                    <div id="Right">
+                        
+                        <div  id = "head_bar_right">
+                            <div id="title">
+                            <span style="font-family:Baloo; font-size: 40px; color: white;">{{title}}</span>
+                            </div>                
+                            
+                        </div>
+                        <div id="space"></div>
+                        <div  id = "block" >
+                            {% block content %}
+
+                            {% endblock %}
+                        </div>
+                    </div>
+                <div>
+            </body>
+          </html>
+
+

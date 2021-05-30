@@ -1,0 +1,69 @@
+
+<link rel="stylesheet" type="text/css" href="../static/login2.css">
+<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.5.2/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Baloo">
+<style>
+.wrong
+{
+  font-size: 19px;
+  color: #e90101;
+  animation: blink-1 6s linear infinite;
+  text-align: center;
+  
+}
+@keyframes blink-1 
+{
+  0%,
+  50%,
+  100% 
+  {
+    opacity: 1;
+  }
+  25%,
+  75% 
+  {
+    opacity: 0;
+  }
+}
+</style>
+
+
+<div class="logo">
+</div>
+
+<div class="login-box">
+    <h2>Login</h2>
+    <form action="login" method="post">
+      {% csrf_token %} 
+      <div class="user-box">
+        <input type="text" name="username" required="">
+        <label>Username</label>
+      </div>
+      <div class="user-box">
+        <input type="password" name="password" required="">
+        <label>Password</label>
+      </div>
+      {% if messages %}
+      <div class="wrong" >
+      {% for message in messages %}
+      <b>{{message}}</b>
+      {% endfor%}
+      </div>
+    {%endif%}
+      <!-- <input type="submit"> -->
+      <!-- <button onclick="login">SUBMIT<a></a></button> -->
+      <button onclick="login">SUBMIT
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span> 
+      </button>
+         <!-- {% for message in messages %}
+        <b>{{message}}</b>
+          {% endfor%} -->
+    </input>
+    </form>
+  </div>
+  <!-- tepppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp -->
+ 
+  

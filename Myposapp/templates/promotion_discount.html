@@ -1,0 +1,361 @@
+{% extends 'layout_admin.html' %}
+{% load static %}
+
+{% block content %}
+  
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">    
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<scrip src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  
+  <link rel="stylesheet" href="/path/to/cdn/bootstrap.min.css" />
+  <link rel="stylesheet" href="/path/to/bootstrap-steps.min.css" />
+  
+  <scrip src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></scrip>
+  <scrip src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></scrip>
+    
+<link rel="stylesheet" type="text/css"  href="{% static 'promotion_discount.css' %}">
+<style>
+    .popup .overlay {
+    position:fixed;
+    top:0px;
+    left:0px;
+    width:100vw;
+    height:100vh;
+    background:rgba(0,0,0,0.7);
+    z-index:1;
+    display:none;
+    }
+    
+    .popup .content {
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%) scale(0);
+    background:#fff;
+    width:875px;
+    height:243px;
+    z-index:2;
+    text-align:center;
+    padding:20px;
+    box-sizing:border-box;
+    font-family:"Baloo";
+    border-radius: 50px;
+    }
+    
+    .popup .close-btn {
+    cursor:pointer;
+    position:absolute;
+    right:30px;
+    top:20px;
+    width:30px;
+    height:30px;
+    color:#222;
+    font-size:50px;
+    font-weight:600;
+    line-height:30px;
+    text-align:center;
+    border-radius:50%;
+    }
+    
+    .popup.active .overlay {
+    display:block;
+    }
+    
+    .popup.active .content {
+    transition:all 300ms ease-in-out;
+    transform:translate(-50%,-50%) scale(1);
+    }
+  
+    .bn {
+      background-color: #DEDEDE;
+      color:  #858383;
+      border-width: 1px;
+      width:  80%;
+      height:  85%;
+      border-radius: 50px;
+      font-family:Baloo;
+      font-size:20px;
+      transition-duration: 0.4s;
+      margin-right: 0.5%;
+    }
+    
+    .bn:hover {
+      background-color: #838383;
+      color: white;
+      border: none;
+      width:  80%;
+      height:  85%;
+      border-radius: 50px;
+      box-shadow: 0 5px 5px 0 rgba(153, 153, 153, 0.24),0 5px 5px 0 rgba(153, 153, 153, 0.24);
+      font-family:Baloo;
+      font-size:20px;
+    }
+    #rowbn{
+      display: flex;
+      flex-direction: row;
+      height: 30%;
+      width: 100%;
+      /* background-color: aqua; */
+      margin-top: 4%;
+    }
+  
+  </style>
+<form id="form1" method="POST" action="/promotion/discount/">
+    {% csrf_token %}
+    <div class = 'view' >
+        <div class="top">
+            <div class="BockinTop">
+                <span id="pName">Promotion Name : </span>&nbsp &emsp;
+                <input type="text" name="promotion_name" id="iPName" value="{{item.name}}" required>
+                <div style=" width : 150px ; height : 30px; margin-top : 13px ;margin-left: 1%;">
+                    <span style="color: red;font-family: Baloo;">{{name_error}}</span>
+                </div>
+            </div> 
+            <div style="display: flex; height: 40%;width: 80%;justify-content: center;">
+                <p id="type">Discount Type : <span style="color: #283B5F;font-family: Baloo;"> &emsp;&nbsp&nbsp Discount THB / %</span></p>     
+            </div>
+        </div>
+
+        <div class="mid">
+            <p style="font-family: Baloo; color: #6EA6E2;font-size: 23px;margin: 0;margin-left: 1.5%;">Promotion time</p>
+            <div style="height: 3px;width: 100%;background-color: rgb(170, 169, 169); margin-bottom: 1.5%;"></div>
+            <div class="rows">
+                <span id="bfont">Start  Date  : &emsp;</span> 
+                <input type="date" id="startdate" name="startdate" style="margin-left: 1%;height: 50%;width: 30%;" value="{{item.start_date|date:'Y-m-d'}}" required> &emsp; &emsp; &emsp; &emsp;
+                <span id="bfont">End  Date  : &emsp;</span>
+                <input type="date" id="enddate" name="enddate" style="margin-left: 1%;height: 50%;width: 30%;" value="{{item.end_date|date:'Y-m-d'}}" required>
+            </div>
+            <!-- <div class="rowf">
+                <span id="bfont">From &emsp; &emsp; &emsp;&nbsp</span>
+                <input type="time" id="f" name="from" style="margin-left: 1%;height: 50%;width: 15%;" value="{{item.from}" required> &emsp; &emsp; &emsp; &emsp;
+                <span id="bfont">To  &emsp; &emsp; &emsp;&emsp;</span>
+                <input type="time"id="t" name="to" style="margin-left: 1%;height: 50%;width: 15%;" value="{{item.to}}" required>
+            </div> -->
+
+        </div>
+        
+        <div class="mid2">
+            <p style="font-family: Baloo; color: #6EA6E2;font-size: 23px; margin: 0;margin-left: 1.5%;"> Discount</p>
+            <div style="height: 1.5px;width: 100%;background-color: rgb(170, 169, 169);"></div>
+            <div class="row1">
+                <div class="form-check form-check-inline" style="margin-right: 10%;margin-bottom: 1%;">
+                    <input class="form-check-input" type="radio" name="type" id="Percent off" value="Percent off" checked>
+                    <label class="form-check-label" for="inlineRadio1"id="rfont">Take  Percent  Off  </label>
+                </div>
+                <div class="form-check form-check-inline"  style="margin-right: 13%;margin-bottom: 1%; ">
+                    <input class="form-check-input" type="radio" name="type" id="Amount off" value="Amount off" >
+                    <label class="form-check-label" for="inlineRadio2" id="rfont"> Take  Amount  Off</label>
+                </div>
+                <span style="margin-top: 1%;font-family: Baloo;color: #7B7B7B;">Apply to : &emsp; </span>&emsp;
+                <select class="form-select" aria-label="Default select example" id="rApply" name="select">
+                    <option value="All" >All products</option>
+                    <option value="Some" selected>Some products</option>
+                </select>
+                
+            </div> 
+            <div class="row3" style="margin-left: 10%;height: 44;width: 80%;display: flex;flex-direction: row;">
+                <span id="bfont" style="margin-top: 0.8%;">Discount Value  : &emsp;</span> 
+                <!-- <input type="number" name="discount_value" id="ipValue" value="0" required> -->
+                <input type="number" id="dcv" name="discount_value" min="0" value="{{item.value}}" style="border-radius: 50px; width: 15%; height: 50% ;margin-top : 6px ;" required>
+                
+
+                <!-- <div id="Percent off" class="data" style="margin-top: 0.8%; width: 2%;height: 45%;background-color: #777776;text-align: center;"><span id="bfont" style="color: white;">%</span></div>
+                <div id="Amount off" class="data" style="margin-top: 0.8%; width: 3.6%;height: 45%;background-color: #777776;text-align: center;"><span id="bfont" style="color: white;">THB</span></div> -->
+            </div>   
+</form>      
+          
+            <div class="row2">
+                
+                <!-- <span id="bfont">Apply  To  : &emsp; &emsp;</span> -->
+                <div class="eiei" id="All"></div>
+                <div class="eiei" id="Some" style="overflow-y: scroll;display:none ;height: 100%;">
+                    {% if c != '1' %}
+                    <div>
+                    {% else %}
+                    <div hidden>
+                    {% endif %}
+                        <form  id="searchform" method="POST" action="/promotion/additem_promotion/">   
+                        {% csrf_token %}
+                        <div style=" width : 100% ; height : 30%; display: flex ; flex-direction : row ;margin-left: 2%;margin-top: -1%;">
+                            <div style="width : 200px ; height : 100%;">
+                                <label  style = "font-size: 15;font-family:Baloo; margin-left : 30% ; color : gray ;  margin-top : 10%;font-weight: unset;" >barcode  : </label>
+                            </div>
+                            <div style=" width : 400px ; height : 100%; margin-top : 8px ;">
+                                <input  
+                                    name="barcodeID"
+                                    class="form-control"  
+                                    type="text" 
+                                    maxlength="13"
+                                    style=" border-radius: 50px; width:  98%; height: 60% ; margin-left :2%; margin-top : 2% ;">
+                            </div>
+                            <div style=" width : 100px ; height : 100%; ">
+                                <button  onclick="add()" id='searchbtn' class="btn btn-primary" style="margin-left :1%; height: 35px ;width :35px ;    border: none; border-radius: 17.5px;margin-top : 8% ;; background: url(https://media.discordapp.net/attachments/807134152011939850/812019766620848209/ss.png)"></button>
+                            </div>
+                            <div style=" width : 1000px ; height : 100%; margin-top : 13px ;">
+                                <span style="color: red;font-family: Baloo;"> {{error}}</span>
+                            </div>
+                        </div>
+                        </form>
+                    </div>
+
+                    <table class="table table-hover" style="font-family: Baloo;">
+                        <thead>
+                            <tr style="font-size: 18px; ">
+                                <th scope="col" >Barcode</th>
+                                <th scope="col"class='font'>Product  Name</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Model</th>
+                                <th scope="col">Size</th>
+                                <th scope="col">Color</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody  style="font-size: 15px; color: #8E8C8C;">
+                        {% for i in data %} 
+                        <a href="/">
+                        <tr>
+                            <th scope="row">{{i.5}}</th>
+                            <td>{{i.6}}</td>
+                            <td>{{i.12}}</td>
+                            <td>{{i.10}}</td>
+                            <td>{{i.7}}</td>
+                            <td>{{i.8}}</td>
+                            <td ><button onclick="location.href='/promotion/delete_item/{{i.0}}/'" class="btn btn-danger" type="button">delete</button></td>
+                        </tr>
+                        </a>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    <!-- <div style="height: 20%; width: 10%;">
+                        <div class="popup" id="popup-1">
+                        <div class="overlay"></div>
+                        <div class="content">
+                          <div class="close-btn" onclick="togglePopup1()">&times;</div>
+                          <h1 style="color: #87B4E4;">Choose &nbsp<span style="color: #514B4B; font-size: 30px;"> type  for  promotion</span></h1>
+                          <hr>
+                          
+                        </div>
+                      </div>
+                      <button  onclick="togglePopup1()" class="addpd"  style="text-align: center;" ><p style="padding-top: 5%">+ Product</p></button>
+                    </div> -->
+                    
+                </div>
+            </div>
+        </div>
+        
+
+
+        <div class="bottom">
+            <a href="/promotion/" class="backbn" style="text-decoration:none; text-align: center;" ><p style="padding-top: 6px;">Cancle</p></a>
+            <div class="space"></div>
+            <button onclick="submitForms()" id="submit" type="submit" class="subbn" id="submit" style="text-decoration:none; text-align: center;padding-bottom: 20px;display: none;"><p style="padding-top: 6px;">Submit</p></button>
+        </div>
+      
+
+    </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script>
+    
+    var c = "{{c}}";
+    if(c != '1'){
+        $('#submit').show();
+        document.getElementById("iPName").value = localStorage.getItem("name");
+        document.getElementById("startdate").value = localStorage.getItem("start_date");
+        document.getElementById("enddate").value = localStorage.getItem("end_date");
+        // document.getElementById("f").value = localStorage.getItem("from");
+        // document.getElementById("t").value = localStorage.getItem("to");
+
+        if(localStorage.getItem("radioValue") == 'Percent off' ){
+            document.getElementById('Percent off').checked = true;
+        }
+        if(localStorage.getItem("radioValue") == 'Amount off' ){
+            document.getElementById('Amount off').checked = true;    
+        }
+        // $('#' + newcol).prop('checked',true);
+        $('#dcv').val(localStorage.getItem("v"));
+    }
+    var types = "{{item.types}}";
+    var apply = "{{item.apply}}";
+    if(types == 'Percent off' ){
+        document.getElementById('Percent off').checked = true;
+        // $("#rApply").get(0).selectedIndex = 1;
+        $("#rApply").val(apply);
+        // $('#rApply' + $('All').val()).selected = true;
+        // $('#' + $(this).val()).fadeIn(500);
+        // $('#%').show();
+        // $('#THB').hide();
+    }
+    if(types == 'Amount off' ){
+        document.getElementById('Amount off').checked = true;
+        $("#rApply").val(apply);
+        // document.getElementById('rApply').selected = true;
+        // $('#rApply' + $('Some').val()).selected = true;
+        // $('#THB').show();
+        // $('#%').hide();
+    }
+
+    submitForms = function(){
+        localStorage.clear()
+    document.getElementById("form1").submit();
+    
+    }
+    search = function(){
+    document.getElementById("searchform").submit();
+    
+    }
+    add = function(){
+            var n = document.getElementById("iPName").value
+            var s = document.getElementById("startdate").value
+            var e = document.getElementById("enddate").value
+            // var f = document.getElementById("f").value
+            // var t = document.getElementById("t").value
+            var v = document.getElementById("dcv").value
+            var radioValue = $("input[name='type']:checked").val();
+
+            localStorage.setItem("name",n);
+            localStorage.setItem("start_date",s);
+            localStorage.setItem("end_date",e);
+            // localStorage.setItem("from",f);
+            // localStorage.setItem("to",t);
+            localStorage.setItem("v",v);
+            localStorage.setItem("radioValue",radioValue);
+        
+        setTimeout(() => {
+                document.getElementById("searchform").submit();
+        }, 5000);
+        
+    }
+    // $(document).ready(function(){
+    //     $('.form-check-input').on('change',function(){
+    //         $('.data').hide();
+    //         $('.' + $(this).val()).fadeIn(500);
+          
+    //     }).change();
+    // });
+
+    $(document).ready(function(){
+        $('#rApply').on('change',function(){
+            $('.eiei').hide();
+            $('#' + $(this).val()).fadeIn(500);
+          
+        }).change();
+    });
+
+    function togglePopup1(){
+    document.getElementById("popup-1").classList.toggle("active");
+    }
+   
+  
+    // function setAmount(){
+    //     var x =10;
+    //     document.getElementById("test").innerHTML = "You selected: " + x;
+    // }
+
+</script>
+
+
+{% endblock %}

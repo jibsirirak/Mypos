@@ -1,0 +1,353 @@
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Add Member</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://fonts.googleapis.com/css?family=Baloo&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+        <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.js"></script>
+
+    <style>
+    .flex-container{
+    display: flex;
+    background-color: rgb(255, 255, 255);
+    height : 100% ;
+    width: 100%;
+    flex-direction:row;
+    }
+    #tab {
+        display: flex;
+        background-color: rgb(255, 255, 255);
+        width: 100%;
+        height: 15%;
+        /* flex-direction:  column; */
+    }
+
+    #tab1 {
+        display: flex;
+        background-color: rgb(49, 49, 49);
+        width: 100%;
+        height: 7%;
+        /* flex-direction:  column; */
+    }
+    #tab2 {
+        display: flex;
+        background-color: rgb(255, 255, 255);
+        width: 100%;
+        height: 7%;
+        /* flex-direction:  column; */
+    }
+
+    .space {
+        display: flex;
+        background-color: #ffffff;
+        width: 100%;
+        height: 71%;
+        flex-direction: row;
+    }
+
+    #line{
+        display: flex;
+        background-color: #ffffff;
+        width: 100%;
+        height: 17%; 
+    }
+
+    #doubleline{
+        display: flex;
+        background-color: #ffffff;
+        width: 100%;
+        height: 32%;
+        
+    }
+    #blank{
+        display: flex;
+        background: rgb(255, 255, 255);
+        width: 5%;
+        height: 100%;
+
+    }
+    #center{
+        display: flex;
+        background: rgb(255, 255, 255);
+        width: 90%;
+        height: 100%;
+        flex-direction: column;
+        border: solid;
+    
+    }
+    #halfleft{
+        display: flex;
+        background-color: #ffffff;
+        width: 50%;
+        height: 100%;
+       
+    }
+
+    #halfright{
+        display: flex;
+        background-color: #ffffff;
+        width: 50%;
+        height: 100%;
+
+    }
+        #free{
+            display: flex;
+            background-color: #ffffff;
+            width: 50%;
+            height: 17%;
+            
+        }
+        .container2 {
+            width: 100%;
+            margin: 100; 
+        }
+        .progressbar {
+            counter-reset: step;
+        }
+        .progressbar li {
+            list-style-type: none;
+            width: 33%;
+            float: left;
+            font-size: 20px;
+            position: relative;
+            text-align: center;
+            text-transform: uppercase;
+            color: #7d7d7d;
+        }
+        .progressbar li:before {
+            width: 50px;
+            height: 50px;
+            content: counter(step);
+            counter-increment: step;
+            line-height: 50px;
+            border: 2px solid #7d7d7d;
+            display: block;
+            text-align: center;
+            margin: 0 auto 10px auto;
+            border-radius: 50%;
+            background-color: white;
+        }
+        .progressbar li:after {
+            width: 92%;
+            height: 10px;
+            content: '';
+            position: absolute;
+            background-color: #ff0000;
+            top: 20px;
+            left: -46%;
+            z-index: 1;
+        }
+        .progressbar li:first-child:after {
+            content: none;
+        }
+        .progressbar li.active {
+            color: green;
+        }
+        .progressbar li.active:before {
+            border-color: #55b776;
+        }
+        .progressbar li.active + li:after {
+            background-color: #55b776;
+        }
+        .flex-container {
+            display: flex;
+            height : 100% ;
+            flex-direction:column;
+        }
+        
+        .popup .overlay {
+        position:fixed;
+        top:0px;
+        left:0px;
+        width:100vw;
+        height:100vh;
+        background:rgba(0,0,0,0.7);
+        z-index:1;
+        display:none;
+        }
+        
+        .popup .content {
+        position:absolute;
+        top:50%;
+        left:50%;
+        transform:translate(-50%,-50%) scale(0);
+        background:#fff;
+        width:400px;
+        height:450px;
+        z-index:2;
+        text-align:center;
+        padding:20px;
+        box-sizing:border-box;
+        font-family:"Open Sans",sans-serif;
+        }
+        
+        .popup .close-btn {
+        cursor:pointer;
+        position:absolute;
+        right:20px;
+        top:20px;
+        width:30px;
+        height:30px;
+        background:#222;
+        color:#fff;
+        font-size:25px;
+        font-weight:600;
+        line-height:30px;
+        text-align:center;
+        border-radius:50%;
+        }
+        
+        .popup.active .overlay {
+        display:block;
+        }
+        
+        .popup.active .content {
+        transition:all 300ms ease-in-out;
+        transform:translate(-50%,-50%) scale(1);
+        }
+
+        input {  
+        border: 2px solid #eee;
+        border-radius: 4px;
+        }
+        input:valid,
+        input:in-range {  
+        border-color: green;
+        }
+        input:invalid,
+        input:out-of-range {
+        border-color: red;  
+        }
+        .text1
+        {
+        display: inline;
+        width:  100%;
+        height: 400px;
+        background-color: rgb(255, 255, 255);
+        }
+    </style>
+    </head>
+    
+    <body>
+        
+    </style>
+
+<body style="font-family: Baloo; font-size: 20 ;color: #787878">
+    <div class="flex-container">
+        <div id="tab1">
+
+        </div>
+
+        <div id="tab2">
+
+        </div>
+        
+        <div class="space">
+            <div id="blank">
+
+            </div>
+            <div id="center">
+                <form id="f1" action="/membership/add_membership/" method="POST" >
+                    {% csrf_token %}
+                    <div class="text1" style="margin-left: 50px;">
+                        <label>ID card number :* </label>
+                        <input type="text" style="width:50%;height: 50px; margin-top: 2%; margin-left: 10px;" minlength="13" name="IDcard" value="{{data.IDcard}}"  maxlength="13" required="require138d">
+                    </div>
+                    <div></div>
+                    <div style=" height: 20px; width: 20 px;"></div>
+                    <div class="text1" style="margin-top: 40px; margin-left: 50px;">
+                        <input class="form-check-input" id="XS" type="radio" name="title_name" value="Mr."  checked>
+                        <span class="form-check-span" for="inlineRadio1" style="margin-left: 2%;" >Mr.</span>
+
+                        <input class="form-check-input" id="S" type="radio" name="title_name" value="Mrs." >
+                        <span class="form-check-span" for="inlineRadio1"style="margin-left: 2%;" >Mrs.</span>
+
+                        <input class="form-check-input" id="M" type="radio" name="title_name" value="Ms." >
+                        <span class="form-check-span" for="inlineRadio1"style="margin-left: 2%;" >Ms.</span> 
+                    </div>
+                    <div></div>
+                    <div style=" width: 10 px;"></div>
+                    <div class="text1" style="margin-left: 50px;">
+                        <span>Firstname :* </span>
+                        <input type="text" style="width:400px;height: 50px; margin-top: 2%; margin-left: 10px;" name="name" value="{{data.Firstname}}" required>
+
+                        <span style="margin-left: 70px;">Lastname :* </span>
+                        <input type="text" style="width:400px;height: 50px; margin-top: 2%; margin-left: 10px;" name="Lastname" value="{{data.Lastname}}" required>
+                    
+                    </div>
+                    <div></div>
+                    <div style=" width: 10 px;"></div>
+                    <div class="text1" style="margin-left: 50px;">
+                        <span>Age :* </span>
+                        <input type="number" style="width:80px;height: 50px; margin-top: 2%; margin-left: 10px;" name="Age" value="{{data.Age}}" required min=1>
+
+                        <span  style="margin-left: 70px;" >Birthday :* </span>
+                        <input type="date" style="width:300px;height: 50px; margin-top: 2%; margin-left: 10px;" name="Birthday" value="{{data.Birthday}}" required>
+                        
+                    </div>
+                    <div></div>
+                    <div style=" width:  100px; height: 20px;"></div>
+                    <div class="text1" style="margin-top: 40px; margin-left: 50px;">
+                        <input class="form-check-input" id="XS" type="radio" name="Gender" value="Male" checked >
+                        <span class="form-check-span" for="inlineRadio1" style="margin-left: 2%;" >Male</span>
+
+                        <input class="form-check-input" id="S" type="radio" name="Gender" value="Female" >
+                        <span class="form-check-span" for="inlineRadio1"style="margin-left: 2%;" >Female</span>
+                    </div>
+                    <div></div>
+                    <div style=" width: 10 px;"></div>
+                    <div class="text1" style="margin-left: 50px;">
+                        <span>Email :* </span>
+                        <input type="email" style="width:400px;height: 50px; margin-top: 2%; margin-left: 10px;" name="Email" value="{{data.Email}}" required>
+
+                        <span style="margin-left: 70px;">Phonenumber :* </span>
+                        <input type="text" style="width:400px;height: 50px; margin-top: 2%; margin-left: 10px;" name="Phonenumber" value="{{data.Phonenumber}}" maxlength="10" required>
+                    
+                    </div>
+                    <div></div>
+                    <div style=" width: 10 px;"></div>
+                    <div class="text1" style="margin-left: 50px;">
+                        <span>Address :* </span>
+                        <input type="textarea" style="width:1000px;height: 100px; margin-top: 2%; margin-left: 10px;" name="Address" value="{{data.Address}}" required>
+
+                    </div>
+                    <div style="height: 40px; width: 100% ; background-color: white ;"></div>
+                    <div style="height: 50px; width: 100% ; background-color: rgb(255, 255, 255); display: flex; flex-direction: row ;">
+                        <div style="height: 100%; width: 10% ; background-color: rgb(255, 255, 255) ;">
+                            <button style=" width : 100% ; height : 100% ;background-color: #f44336; color: seashell;" class="previous action-button" >cancle</button>
+                        </div>
+                        <div style="height: 100%; width: 90% ; background-color: rgb(255, 255, 255) ;"></div>
+                        <div style="height: 100%; width: 10% ; background-color: rgb(255, 255, 255) ;">
+                            <button style=" width : 100% ; height : 100%;background-color: #4CAF50; color: seashell;" class="next action-button" type="submit">Submit</button>
+                        </div>
+                    </div>
+
+
+                </form>
+            </div>
+            <div id="blank">
+
+            </div>
+               
+        </div>
+        <div id="tab">
+
+        </div>    
+
+           
+        
+    </div>
+        
+
+</body>
+</html>

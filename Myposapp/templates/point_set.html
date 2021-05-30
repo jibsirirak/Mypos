@@ -1,0 +1,77 @@
+{% extends 'layout_admin.html' %}
+{% load static %}
+
+{% block content %}
+<form id="form1" method="POST" action="/membership_promotion/point_set/">
+    {% csrf_token %} 
+
+    <div class="overlay"></div>
+    <div class="content" style=" border-radius : 40px; height:45%;  margin-top: 10%;">
+        <div style="  height: 100% ; width : 100% ; display:flex ; flex-direction : column;">
+            <div style="height : 14% ; text-align : center ;">    
+                <span style="font-family:Baloo;color : #87B4E4 ; font-size : 18px ; ">Setting  New  Point</span>
+            </div>
+            <div style="height: 10px;"></div>
+            <div style="background-color : #464645 ; height : 2% ; "></div>
+            <CENTER>
+                
+                <P style = "margin-right: 25px; vertical-align: middle ;font-family:Baloo; font-size: 13px; margin-top: 15px; color : #588dc5 ;" >Pay
+                    <input style = " border: none; margin-left: 1.2%; background: #E4E4E4 ; color : #7B8599 ; font-size: 13px; "  type="text" name="pay" size="20" maxlength="200"  placeholder="    insert name promotion"/> 
+
+                    <P style = "margin-right: 25px; position:static; vertical-align: middle ;font-family:Baloo; font-size: 13px; margin-top: 15px; color : #588dc5 ;" >Is
+                        <input style = " margin-left: 4%; border: none; background: #E4E4E4 ; color : #7B8599 ; font-size: 13px; "  type="text" name="is" size="20" maxlength="200"  placeholder="    insert name promotion"/>
+
+                        <P style = "vertical-align: middle ;font-family:Baloo; font-size: 13px; margin-top: 15px; color : #588dc5 ;" >Exchange
+                    
+                        <P style = "margin-right: 25px; vertical-align: middle ;font-family:Baloo; font-size: 13px; margin-top: 15px; color : #588dc5 ;" >Use
+                            <input style = " border: none; margin-left: 1.2%; background: #E4E4E4 ; color : #7B8599 ; font-size: 13px; "  type="text" name="use" size="20" maxlength="200"  placeholder="    insert name promotion"/> 
+        
+                            <P style = " margin-right: 45px; position:static; vertical-align: middle ;font-family:Baloo; font-size: 13px; margin-top: 15px; color : #588dc5 ;" >discout
+                                <input style = " border: none; background: #E4E4E4 ; color : #7B8599 ; font-size: 13px; "  type="text" name="discount" size="20" maxlength="200"  placeholder="    insert name promotion"/>
+                
+                    
+                </CENTER>
+            <div style=" height : 30% ;  margin-top : 10% ; background-color: blue;"></div>
+                <div style=" float:left ;  width : 85.5% ;  display:flex ; justify-content: flex-start;">
+                    
+                
+                <div style="float:left ;  width : 100% ;  ">
+                    <a class="btn btn-danger" style = "margin-left: 30px; font-family:Baloo; font-size: 15px;" href="/membership_promotion/" role="button">Back</a></div>
+                    <button onclick="submitForms()" id="submit" type="submit" class="btn btn-danger" style = " margin-left: 100%; font-family:Baloo; font-size: 15px;" href="#" role="button">Summit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <input style = " border: none; margin-left: 1.2%; background: #E4E4E4 ; color : #7B8599 ; font-size: 13px; "  type="text" name='discout_old' size="20" maxlength="200"  value="{{err.discout_new}}" hidden/>
+    <input style = " border: none; margin-left: 1.2%; background: #E4E4E4 ; color : #7B8599 ; font-size: 13px; "  type="text" name="Use_old" size="20" maxlength="200"  value="{{err.Use_new}}" hidden/>
+    <input style = " border: none; margin-left: 1.2%; background: #E4E4E4 ; color : #7B8599 ; font-size: 13px; "  type="text" name="Pay_old" size="20" maxlength="200"  value="{{err.Pay_new}}" hidden/>
+    <input style = " border: none; margin-left: 1.2%; background: #E4E4E4 ; color : #7B8599 ; font-size: 13px; "  type="text" name="Is_old" size="20" maxlength="200"  value="{{err.Is_new}}" hidden/>
+</div>
+
+
+<script>
+    var c = "{{c}}";
+    if(c != '1'){
+        $('#submit').show();
+    }
+
+   submitForms = function(){
+    document.getElementById("form1").submit();
+    
+    }
+
+    $(document).ready(function(){
+        $('#rApply').on('change',function(){
+            $('.content').hide();
+            $('#' + $(this).val()).fadeIn(500);
+          
+        }).change();
+    });
+    // function setAmount(){
+    //     var x =10;
+    //     document.getElementById("test").innerHTML = "You selected: " + x;
+    // }
+</script>
+
+</form>
+{% endblock %}

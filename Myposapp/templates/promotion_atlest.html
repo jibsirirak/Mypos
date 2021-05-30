@@ -1,0 +1,209 @@
+{% extends 'layout_admin.html' %}
+{% load static %}
+
+{% block content %}
+  
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">    
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<scrip src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  
+  <link rel="stylesheet" href="/path/to/cdn/bootstrap.min.css" />
+  <link rel="stylesheet" href="/path/to/bootstrap-steps.min.css" />
+  
+  <scrip src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></scrip>
+  <scrip src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></scrip>
+    
+<link rel="stylesheet" type="text/css"  href="{% static 'promotion_atlest.css' %}">
+<style>
+    .popup .overlay {
+    position:fixed;
+    top:0px;
+    left:0px;
+    width:100vw;
+    height:100vh;
+    background:rgba(0,0,0,0.7);
+    z-index:1;
+    display:none;
+    }
+    
+    .popup .content {
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%) scale(0);
+    background:#fff;
+    width:875px;
+    height:243px;
+    z-index:2;
+    text-align:center;
+    padding:20px;
+    box-sizing:border-box;
+    font-family:"Baloo";
+    border-radius: 50px;
+    }
+    
+    .popup .close-btn {
+    cursor:pointer;
+    position:absolute;
+    right:30px;
+    top:20px;
+    width:30px;
+    height:30px;
+    color:#222;
+    font-size:50px;
+    font-weight:600;
+    line-height:30px;
+    text-align:center;
+    border-radius:50%;
+    }
+    
+    .popup.active .overlay {
+    display:block;
+    }
+    
+    .popup.active .content {
+    transition:all 300ms ease-in-out;
+    transform:translate(-50%,-50%) scale(1);
+    }
+  
+    .bn {
+      background-color: #DEDEDE;
+      color:  #858383;
+      border-width: 1px;
+      width:  80%;
+      height:  85%;
+      border-radius: 50px;
+      font-family:Baloo;
+      font-size:20px;
+      transition-duration: 0.4s;
+      margin-right: 0.5%;
+    }
+    
+    .bn:hover {
+      background-color: #838383;
+      color: white;
+      border: none;
+      width:  80%;
+      height:  85%;
+      border-radius: 50px;
+      box-shadow: 0 5px 5px 0 rgba(153, 153, 153, 0.24),0 5px 5px 0 rgba(153, 153, 153, 0.24);
+      font-family:Baloo;
+      font-size:20px;
+    }
+    #rowbn{
+      display: flex;
+      flex-direction: row;
+      height: 30%;
+      width: 100%;
+      /* background-color: aqua; */
+      margin-top: 4%;
+    }
+  
+  </style>
+<!-- <form method="POST" action="/promotion/discount/"> -->
+   
+    <form id="form1" method="POST" action="/promotion/atlest/">
+        {% csrf_token %} 
+    <div class = 'view'>
+        <div class="top">
+            <div class="BockinTop">
+                <span id="pName">Promotion Name : </span>&nbsp &emsp;
+                    <input type="text" name="promotion_name" id="iPName"  value="{{item.name}}" required>
+                    <div style=" width : 150px ; height : 30px; margin-top : 13px ;margin-left: 1%;">
+                        <span style="color: red;font-family: Baloo;">{{name_error}}</span>
+                    </div>
+                </div> 
+            
+                <div style="display: flex; height: 40%;width: 80%;justify-content: center;">
+                    <p id="type">Discount Type : <span style="color: #283B5F;font-family: Baloo;"> &emsp;&nbsp&nbsp At least</span></p> 
+                    <input type="text" name="type" value="At least" hidden>    
+                </div>
+            </div>
+
+        <div class="mid">
+            <p style="font-family: Baloo; color: #6EA6E2;font-size: 23px;margin: 0;margin-left: 1.5%;">Promotion time</p>
+            <div style="height: 3px;width: 100%;background-color: rgb(170, 169, 169); margin-bottom: 1.5%;"></div>
+            <div class="rows">
+                
+                <span id="bfont">Start  Date  : &emsp;</span> 
+                <input type="date" name="startdate" style="margin-left: 1%;height: 50%;width: 30%;" value="{{item.start_date|date:'Y-m-d'}}" required> &emsp; &emsp; &emsp; &emsp;
+                <span id="bfont">End  Date  : &emsp;</span>
+                <input type="date" name="enddate" style="margin-left: 1%;height: 50%;width: 30%;" value="{{item.end_date|date:'Y-m-d'}}" required>
+            </div>
+            <!-- <div class="rowf">
+                <span id="bfont">From &emsp; &emsp; &emsp;&nbsp</span>
+                <input type="time" name="from" style="margin-left: 1%;height: 50%;width: 15%;" required> &emsp; &emsp; &emsp; &emsp;
+                <span id="bfont">To  &emsp; &emsp; &emsp;&emsp;</span>
+                <input type="time" name="to" style="margin-left: 1%;height: 50%;width: 15%;" required>
+            </div> -->
+
+            
+           
+        </div>
+        
+       
+            <div class="mid2">
+                <p style="font-family: Baloo; color: #6EA6E2;font-size: 23px; margin: 0;margin-left: 1.5%;"> Discount</p>
+                <div style="height: 1px;width: 100%;background-color: rgb(170, 169, 169);"></div>
+                <div class="row1">
+                    <span id="bfont" style="margin-top: 0.8%;">At  least  : &emsp;</span> 
+                    <input type="number" name="atlest" min="0" id="ipValue" value="{{item.atlest}}" required>
+                    <div id="Amount Off" class="data" style="margin-top: 0.8%; width: 3.6%;height: 45%;background-color: #777776;text-align: center;"><span id="bfont" style="color: white;">THB</span></div>  
+                    &emsp;&emsp;&emsp;&emsp;
+                    <span id="bfont" style="margin-top: 0.8%;">Discount Value  : &emsp;</span> 
+                    <input type="number" name="discount_value" id="ipValue"min="0" value="{{item.value}}" required>
+                    <div id="Persent Off" class="data" style="margin-top: 0.8%; width: 2%;height: 45%;background-color: #777776;text-align: center;"><span id="bfont" style="color: white;">%</span></div>
+
+
+                </div>
+            </div>
+        
+        
+    
+        </form>
+        <div class="bottom">
+            <a href="/promotion/" class="backbn" style="text-decoration:none; text-align: center;" ><p style="padding-top: 6px;">Cancle</p></a>
+            <div class="space"></div>
+            <button onclick="submitForms()" id="submit" type="submit" class="subbn" style="text-decoration:none; text-align: center;padding-bottom: 20px;display: none;" ><p style="padding-top: 6px;">Submit</p></button>
+        </div>
+      
+
+    </div>
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script>
+    var c = "{{c}}";
+    if(c != '1'){
+        $('#submit').show();
+    }
+
+   submitForms = function(){
+    document.getElementById("form1").submit();
+    
+    }
+
+    $(document).ready(function(){
+        $('#rApply').on('change',function(){
+            $('.content').hide();
+            $('#' + $(this).val()).fadeIn(500);
+          
+        }).change();
+    });
+    // function setAmount(){
+    //     var x =10;
+    //     document.getElementById("test").innerHTML = "You selected: " + x;
+    // }
+</script>
+<script>
+    function togglePopup(){
+    document.getElementById("popup-1").classList.toggle("active");
+    }
+  
+</script>
+
+{% endblock %}

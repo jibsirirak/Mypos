@@ -1,0 +1,52 @@
+{% extends 'layout_admin.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" type="text/css"  href="{% static 'employee.css' %}">
+
+<div class = 'flex-container'>
+  <div class="left">
+    <form action="/employee/search/">
+      {% csrf_token %}
+      <div class="head1">
+        <span style="font-family: Baloo; font-size: 20">Search </span>
+        <input type="text" class="form-control " style="width:80%; margin-left: 2%; height: 40px;" name="Searchbar">
+        <button type="submit" class="btn btn-primary" style="margin-left :1%; height: 35px ;width :35px ;    border: none; border-radius: 17.5px; background: url(https://media.discordapp.net/attachments/807134152011939850/812019766620848209/ss.png)"></button>
+    </form>
+
+        <a href="/employee/add_employee/">
+        <button type="button"  class="btn btn-success btn-rounded" style="font-family: Baloo; margin-left: 20%; width: 150px; border-radius: 50px; background-color: #4F7BBC; border: none">Add +</button>
+        </a>
+      </div>
+      <div class="head2" style="padding-top: 20px ; overflow: auto;">
+        <table class="table table-hover" style="font-family: Baloo; ">
+            <thead>
+              <tr style="font-size: 18px; margin-left: auto; margin-right: auto;">
+                <th scope="col" >Employee ID</th>
+                <th scope="col"class='font'>Name</th>
+                <th scope="col">Role</th>
+                <th scope="col-sm"></th>
+                <th scope="col-sm"></th>
+              </tr>
+            </thead>
+            <tbody  style="font-size: 15px; color: #8E8C8C;">
+             {% for i in data %} 
+             <a href="/">
+               <tr>
+                {% if i.status == 1 %}
+                  <th scope="row">{{i.id}}</th>
+                  <td>{{i.Firstname}}  {{i.Lastname}}</td>
+                  <td>{{i.Role}}</td>
+                  <td ><button class="btn btn-primary"onclick = "location.href='/employee/edit_employee/{{i.id}}/'" type="button">edit</button></td>
+                  <td ><button class="btn btn-danger" onclick = "location.href='/employee/del_employee/{{i.id}}/'" type="button">delete</button></td>
+                {% endif %}  
+              </tr>
+            </a>
+              {% endfor %}
+            </tbody>
+          </table>
+      </div>
+  </div>
+
+</div>
+{% endblock %}

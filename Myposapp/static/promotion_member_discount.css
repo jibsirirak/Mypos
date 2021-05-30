@@ -1,0 +1,23 @@
+.flex-container2{
+    display: flex;
+    flex-direction: column;
+    width :100%;
+    background-color: white;
+    height: 100%;
+}
+.flex-container {
+    display: flex;
+    background-color: black;
+    height : 100% ;
+    /* flex-direction:row; */
+}
+.passport-box{
+	display: none
+}
+.backbn { 
+    background-color: #525252; 
+    color:  #FFFFFF;
+    font-family:Baloo;
+    font-size:15px;
+    transition-duration: 0.4s;
+}

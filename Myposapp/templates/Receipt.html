@@ -1,0 +1,134 @@
+<link rel="stylesheet" href="/Myposapp/static/Receipt.css">
+
+  <div id="invoice-POS">
+    
+    <div id="top">
+      <div class="info"> 
+	  <div>
+		  <div style=" width: 265px ;height: 60px;align-items: center; margin-left: 100px;">
+			<img src="//cdn.discordapp.com/attachments/807134152011939850/811626088198832158/LogoGroup.png"width = "90px" height="57px" >
+		  </div>
+		  <div style=" width: 265px ;height: 30px; margin-top: 0px; margin-left: 0px;justify-content: center;">
+			<div class = "container">
+				<div style="width: 133px ;height: 30px;text-align: left;">
+					<p1>
+						TID:000001
+					</p1>
+
+				</div>
+				<div style="width: 133px ;height: 30px;text-align: right;">
+					<p1>
+						7/1/2021 16:36:48
+					</p1>
+
+				</div>
+			</div>
+		</div>
+	  </div><!--End Info-->
+	</div>
+</div><!--End InvoiceTop-->
+    
+    <div id="mid"> 
+      <div class="info" style="margin-top: -15px;">
+        <h2>Member Info</h2>
+        <p> 
+            Name : xxxxxxxxxxxxxxxxxxx</br>
+            Phone   : 098-xxx-xxxx</br>
+			Point   : 1050</br>
+        </p>
+      </div>
+    </div><!--End Invoice Mid-->
+    
+    <div id="bot">
+
+					<div id="table">
+						<table>
+							<tr class="tabletitle">
+								<td class = "code"><h2>Code</h2></td>
+								<td class="item"><h2>Detail</h2></td>
+								<td><h2>Qty</h2></td>
+								<td class="Rate"><h2>Sub Total</h2></td>
+							</tr>
+
+							<tr class="service">
+								<td class="tableitem"><p class="itemtext">000001</p></td>
+								<td class="tableitem"><p class="itemtext">Shirt</p></td>
+								<td class="tableitem"><p class="itemtext">5</p></td>
+								<td class="tableitem"><p class="itemtext">375.00 ฿</p></td>
+							</tr>
+
+							<tr class="service">
+								<td class="tableitem"><p class="itemtext">000002</p></td>
+								<td class="tableitem"><p class="itemtext">Pants</p></td>
+								<td class="tableitem"><p class="itemtext">3</p></td>
+								<td class="tableitem"><p class="itemtext">225.00 ฿</p></td>
+							</tr>
+
+							<tr class="service">
+								<td class="tableitem"><p class="itemtext">000003</p></td>
+								<td class="tableitem"><p class="itemtext">Hat</p></td>
+								<td class="tableitem"><p class="itemtext">5</p></td>
+								<td class="tableitem"><p class="itemtext">375.00 ฿</p></td>
+							</tr>
+
+							<tr class="service">
+								<td class="tableitem"><p class="itemtext">000004</p></td>
+								<td class="tableitem"><p class="itemtext">Sock</p></td>
+								<td class="tableitem"><p class="itemtext">20</p></td>
+								<td class="tableitem"><p class="itemtext">1500.00 ฿</p></td>
+							</tr>
+
+							<tr class="service">
+								<td class="tableitem"><p class="itemtext">000005</p></td>
+								<td class="tableitem"><p class="itemtext">Shoes</p></td>
+								<td class="tableitem"><p class="itemtext">10</p></td>
+								<td class="tableitem"><p class="itemtext">750.00 ฿</p></td>
+							</tr>
+
+
+							<tr class="tabletitle">
+								<td></td>
+								<td></td>
+								<td class="Rate"><h2>Discount</h2></td>
+								<td class="payment"><h2>0 ฿</h2></td>
+							</tr>
+							<tr class="tabletitle">
+								<td></td>
+								<td></td>
+								<td class="Rate"><h2>Total</h2></td>
+								<td class="payment"><h2>3654.25 ฿</h2></td>
+							</tr>
+
+							<tr class="tabletitle">
+								<td></td>
+								<td></td>
+								<td class="Rate"><h2>Recieve</h2></td>
+								<td class = "payment"><h2>4000.00 ฿</h2></td>
+							</tr>
+							<tr class="tabletitle">
+								<td></td>
+								<td></td>
+								<td class="Rate"><h2>Change</h2></td>
+								<td class = "payment"><h2>345.75 ฿</h2></td>
+							</tr>
+
+						</table>
+					</div><!--End Table-->
+
+					<div id="legalcopy" style="text-align: center;">
+						<p class="legal"><strong>THANK YOU FOR CHOOSING US</strong>
+						</p>
+					</div>
+
+				</div><!--End InvoiceBot-->
+
+  </div><!--End Invoice-->
+
+  <div  id = "head_bar_right">                             
+	<button id="btnPrint" class="hidden-print"  style="background-color: #4CAF50;border : 1px solid rgb(0, 255, 106);color: white;padding:10px 20px;border-radius: 15px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px; " >Print</button>
+	<script src="print.js"></script>
+  </div>

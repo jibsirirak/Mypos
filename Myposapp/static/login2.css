@@ -1,0 +1,374 @@
+html {
+  height: 100%;
+}
+body {
+  margin:0;
+  padding:0;
+  /*font-family: sans-serif;*/
+  font-family:"Baloo";
+  /* background: linear-gradient(#141e30, #243b55); */
+  background-image: url("2.jpg");
+  background: #001642;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  background-size: 1100px;;
+  
+}
+.logo{
+  content:url("lg2.png");
+  margin-top: 70px;
+  margin-left: 120px;
+
+} 
+
+.login-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 400px;
+  padding: 40px;
+  transform: translate(-50%, -50%);
+  background: rgb(255, 255, 255); /*background2*/
+  box-sizing: border-box;
+  /* box-shadow: 0 15px 35px #4DA3FF;*/
+  animation: anim2 15s linear infinite;
+  border-radius: 40px;
+}
+
+.login-box h2 {
+  margin: 0 0 30px;
+  padding: 0;
+  font-size: 40px;
+  color: rgb(0, 0, 0);/*login*/
+  text-align: center;
+}
+
+.login-box .user-box {
+  position: relative;
+}
+
+.login-box .user-box input {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #000000;
+  margin-bottom: 30px;
+  border: none;
+  border-bottom: 1px solid rgb(0, 0, 0); /*underline*/
+  outline: none;
+  background: transparent;
+}
+.login-box .user-box label {
+  position: absolute;
+  top:0;
+  left: 0;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #606D72;
+  pointer-events: none;
+  transition: .5s;
+}
+
+.login-box .user-box input:focus ~ label,
+.login-box .user-box input:valid ~ label {
+  top: -20px;
+  left: 0;
+  color: #4DA3FF;
+  font-size: 12px;
+}
+
+.login-box form button {
+  position: relative;
+  display: inlines-block;
+  padding: 10px 20px;
+  background:#e7e7e7d8;
+  color: #000000;
+  font-size: 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  overflow: hidden;
+  transition: .5s;
+  margin-top: 40px;
+  margin-left: 95px;
+  letter-spacing: 4px;
+  border-radius: 10px;
+  box-shadow: 5px 6px #888afa;
+  /* animation: anim1 15s  infinite;  */
+}
+.login-box button:active
+{
+  box-shadow: 1px 2px #666;
+  border-radius: 10px;
+  transform: translateX(3px);
+  transform: translateY(3px);
+  box-shadow:0 0 50px #4DA3FF;
+}
+
+.login-box button:hover {
+  /*click even submit*/
+  background: #cfcfcf;/*click even submit*/
+  color: #000000;
+  border-radius: 10px;
+
+}
+
+
+@keyframes anim1 {
+  0% {
+      box-shadow:5px 6px #ff0000 ;
+  }
+  11% {
+      box-shadow:5px 6px #ff7300;
+  }
+  22% {
+      box-shadow:5px 6px #fffb00;
+  }
+  33% {
+      box-shadow:5px 6px #48ff00 ;
+  }
+  44% {
+      box-shadow:5px 6px #00ffd5;
+  }
+  55% {
+      box-shadow:5px 6px #002bff;
+  }
+  66% {
+      box-shadow:5px 6px #7a00ff ;
+  }
+  77% {
+      box-shadow:5px 6px #ff00c8;
+  }
+  88% {
+      box-shadow:5px 6px #1900ff;
+  }
+  100% {
+      box-shadow:5px 6px #ff0000 ;
+  }
+  
+
+}
+@keyframes anim2 {
+  0% {
+      box-shadow:0 15px 30px #ff0000 ;
+  }
+  11% {
+      box-shadow:0 15px 30px #ff7300;
+  }
+  22% {
+      box-shadow:0 15px 30px #fffb00;
+  }
+  33% {
+      box-shadow:0 15px 30px #48ff00 ;
+  }
+  44% {
+      box-shadow:0 15px 30px #00ffd5;
+  }
+  55% {
+      box-shadow:0 15px 30px #002bff;
+  }
+  66% {
+      box-shadow:0 15px 30px #7a00ff ;
+  }
+  77% {
+      box-shadow:0 15px 30px #ff00c8;
+  }
+  88% {
+      box-shadow:0 15px 30px #1900ff;
+  }
+  100% {
+      box-shadow:0 15px 30px #ff0000 ;
+  }
+}
+  @keyframes anim3 {
+      0% {
+          color:  #ff0000 ;
+      }
+      11% {
+          color: #ff7300;
+      }
+      22% {
+          color: #fffb00;
+      }
+      33% {
+          color: #48ff00 ;
+      }
+      44% {
+          color: #00ffd5;
+      }
+      55% {
+          color: #002bff;
+      }
+      66% {
+          color:x #7a00ff ;
+      }
+      77% {
+          color: #ff00c8;
+      }
+      88% {
+          color: #1900ff;
+      }
+      100% {
+          color: #ff0000 ;
+      }
+  }
+  @keyframes anim4 {
+    0% {
+        box-shadow:0 15px 30px #ff0000 ;
+    }
+    11% {
+        box-shadow:0 15px 30px #ff7300;
+    }
+    22% {
+        box-shadow:0 15px 30px #fffb00;
+    }
+    33% {
+        box-shadow:0 15px 30px #48ff00 ;
+    }
+    44% {
+        box-shadow:0 15px 30px #00ffd5;
+    }
+    55% {
+        box-shadow:0 15px 30px #002bff;
+    }
+    66% {
+        box-shadow:0 15px 30px #7a00ff ;
+    }
+    77% {
+        box-shadow:0 15px 30px #ff00c8;
+    }
+    88% {
+        box-shadow:0 15px 30px #1900ff;
+    }
+    100% {
+        box-shadow:0 15px 30px #ff0000 ;
+    }
+  }
+
+
+.login-box button span {
+  position: absolute;
+  display: block;
+}
+
+.login-box button span:nth-child(1) {
+  top: 0;
+  left: -80%;
+  width: 80%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #f109ca);
+  animation: btn-anim1 1s linear infinite;
+}
+@keyframes btn-anim1 {
+  0% {
+      background-color:rgb(0, 0, 0) ;
+    left: -100%;
+  }
+  50%,100% {
+      background-color:yellow;
+    left: 100%;
+  }
+}
+  
+/*   
+@keyframes btn-anim1 {
+  0% {
+      background-color:red ;
+    left: -100%;
+  }
+  50%,100% {
+      background-color:yellow;
+    left: 100%;
+  }
+} */
+
+
+ .login-box button span:nth-child(2) {
+  top: -80%;
+  right: 0;
+  width: 3px;
+  height: 80%;
+  background: linear-gradient(180deg, transparent, #f109ca);
+  animation: btn-anim2 1s linear infinite;
+  animation-delay: .25s
+}
+
+@keyframes btn-anim2 {
+  0% {
+      background-color:rgb(0, 0, 0);
+    top: -100%;
+  }
+  50%,100% {
+      background-color:#3708e2;
+    top: 100%;
+  }
+}
+
+.login-box button span:nth-child(3) {
+  bottom: 0;
+  right: -80%;
+  width: 80%;
+  height: 3px;
+  background: linear-gradient(270deg, transparent, #f109ca);
+  animation: btn-anim3 1s linear infinite;
+  animation-delay: .5s
+}
+
+@keyframes btn-anim3 {
+  0% {
+    right: -100%;
+    background-color:rgb(0, 0, 0);
+  }
+  50%,100% {
+    right: 100%;
+    background-color:#20f80d;
+  }
+}
+
+.login-box button span:nth-child(4) {
+  bottom: -80%;
+  left: 0;
+  width: 3px;
+  height: 80%;
+  background: linear-gradient(360deg, transparent, #f109ca);
+  animation: btn-anim4 1s linear infinite;
+  animation-delay: .75s
+}
+
+@keyframes btn-anim4 {
+  0% {
+    bottom: -100%;
+    background-color:rgb(0, 0, 0);
+  }
+  50%,100% {
+    bottom: 100%;
+    background-color:#f10e0e;
+  }
+  
+}
+/* body
+{
+background: #000e29;
+} */
+/*tappppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp*/
+.wrong
+{
+  font-size: 19px;
+  color: #e90101;
+  animation: blink-1 6s linear infinite;
+  text-align: center;
+}
+@keyframes blink-1 
+{
+  0%,
+  50%,
+  100% 
+  {
+    opacity: 1;
+  }
+  25%,
+  75% 
+  {
+    opacity: 0;
+  }
+}

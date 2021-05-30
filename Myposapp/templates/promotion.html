@@ -1,0 +1,191 @@
+{% extends 'layout_admin.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">            
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<scrip src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+<link rel="stylesheet" href="/path/to/cdn/bootstrap.min.css" />
+<link rel="stylesheet" href="/path/to/bootstrap-steps.min.css" />
+
+<scrip src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></scrip>
+<scrip src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></scrip>
+  
+<link rel="stylesheet" type="text/css"  href="{% static 'promotion.css' %}">
+
+<style>
+  .popup .overlay {
+  position:fixed;
+  top:0px;
+  left:0px;
+  width:100vw;
+  height:100vh;
+  background:rgba(0,0,0,0.7);
+  z-index:1;
+  display:none;
+  }
+  
+  .popup .content {
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%) scale(0);
+  background:#fff;
+  width:875px;
+  height:243px;
+  z-index:2;
+  text-align:center;
+  padding:20px;
+  box-sizing:border-box;
+  font-family:"Baloo";
+  border-radius: 50px;
+  }
+  
+  .popup .close-btn {
+  cursor:pointer;
+  position:absolute;
+  right:30px;
+  top:20px;
+  width:30px;
+  height:30px;
+  color:#222;
+  font-size:50px;
+  font-weight:600;
+  line-height:30px;
+  text-align:center;
+  border-radius:50%;
+  }
+  
+  .popup.active .overlay {
+  display:block;
+  }
+  
+  .popup.active .content {
+  transition:all 300ms ease-in-out;
+  transform:translate(-50%,-50%) scale(1);
+  }
+
+  .bn {
+    background-color: #DEDEDE;
+    color:  #858383;
+    border-width: 1px;
+    width:  80%;
+    height:  85%;
+    border-radius: 50px;
+    font-family:Baloo;
+    font-size:20px;
+    transition-duration: 0.4s;
+    margin-right: 0.5%;
+  }
+  
+  .bn:hover {
+    background-color: #838383;
+    color: white;
+    border: none;
+    width:  80%;
+    height:  85%;
+    border-radius: 50px;
+    box-shadow: 0 5px 5px 0 rgba(153, 153, 153, 0.24),0 5px 5px 0 rgba(153, 153, 153, 0.24);
+    font-family:Baloo;
+    font-size:20px;
+  }
+  #rowbn{
+    display: flex;
+    flex-direction: row;
+    height: 30%;
+    width: 100%;
+    /* background-color: aqua; */
+    margin-top: 4%;
+  }
+
+</style>
+
+
+<div class = 'flex-container'>
+  <div class="left" style="overflow: auto;">
+    <table class="table table-hover" style="font-family: Baloo;">
+    <thead>
+      <tr style="font-size: 18px; ">
+        <th scope="col" >Promotion Name</th>
+        <th scope="col"class='font'>Type</th>
+        <th scope="col">Date</th>
+        <th scope="col">By</th>
+        <th scope="col-sm"></th>
+        <th scope="col-sm"></th>
+      </tr>
+    </thead>
+    <tbody  style="font-size: 15px; color: #8E8C8C;">
+      {% for i in data %} 
+     
+        <tr>
+          <th scope="row">{{i.name}}</th>
+          <td>{{i.types}}</td>
+          <td>{{i.start_date}} - {{i.end_date}}</td>
+          <td>{{i.by}}</td>
+          <!-- <td>{{i.username}}</td> -->
+          <!-- <div class="popup" id="popup-delete">
+            <div class="overlay"></div>
+            <div class="content">
+              <div class="close-btn" onclick="togglePopupDelete()">&times;</div>
+              <h1 style="color: #87B4E4;">Choose {{i.id}}<span style="color: #514B4B; font-size: 30px;"> this product</span></h1>
+              <hr>
+              <div id="rowbn">
+                <a href="{% url 'deletePromotion' i.id %}" class="bn" style="text-decoration:none; text-align: center;" ><p style="padding-top: 5%">YES</p></a>
+                <a href="/promotion" class="bn" style="text-decoration:none; text-align: center;" ><p style="padding-top: 5%">NO</p></a>
+              </div>
+            </div>
+          </div> -->
+        <!-- <td ><button class="btn btn-danger" type="button">edit</button></td> -->
+          <td ><button onclick="location.href='/promotion/delete_promotion/{{i.id}}/'" class="btn btn-danger" type="button">delete</button></td>
+          
+          <td ><button onclick = "location.href='/promotion/view/{{i.id}}/'"  class="btn btn-primary" type="button">view</button></td>
+         
+        </tr>
+    
+      {% endfor %}
+    </tbody>
+  </table>
+  </div>
+  
+  <div class="right">
+    <div class="flex3">
+      <div class="popup" id="popup-1">
+        <div class="overlay"></div>
+        <div class="content">
+          <div class="close-btn" onclick="togglePopup()">&times;</div>
+          <h1 style="color: #87B4E4;">Choose &nbsp<span style="color: #514B4B; font-size: 30px;"> type  for  promotion</span></h1>
+          <hr>
+          <div id="rowbn">
+            <a href="/promotion/discount/" class="bn" style="text-decoration:none; text-align: center;" ><p style="padding-top: 5%">Discount THB & %</p></a>
+            <a href="/promotion/buyXGetY/" class="bn" style="text-decoration:none; text-align: center;" ><p style="padding-top: 5%">Buy X Get Y</p></a>
+            <a href="/promotion/comboset/" class="bn" style="text-decoration:none; text-align: center;" ><p style="padding-top: 5%">Combo Set</p></a>
+            <a href="/promotion/atlest/" class="bn" style="text-decoration:none; text-align: center;" ><p style="padding-top: 5%">Buy At least</p></a>
+          </div>
+        </div>
+      </div>
+      <button  onclick="togglePopup()"  class="addpromotionbn" style="text-decoration:none; text-align: center;" ><p style="padding-top: 5%">Add +</p></button>
+    </div>
+
+    <div class="flex5"></div>
+    <div class="flex4">
+        <a href="/promotion/history/" class="historybn" style="text-decoration:none; text-align: center;" ><p style="padding-top: 5%">History</p></a>
+    </div>
+  
+  </div>
+
+</div>
+
+<script>
+  function togglePopup(){
+  document.getElementById("popup-1").classList.toggle("active");
+  }
+  function togglePopupDelete(){
+  document.getElementById("popup-delete").classList.toggle("active");
+  }
+
+</script>
+
+{% endblock %}

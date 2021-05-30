@@ -1,0 +1,55 @@
+{% extends 'layout_admin.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'history_promotion.css' %}">
+
+<div class = 'view'>
+    <div class="flex1" >
+        <h3 style="font-family:Baloo;">History  Point</h3> 
+    </div>
+    <hr style="margin-top: -2px; width: 90%;margin-left: 3.5%; height: 2px;background-color:rgb(100, 98, 98)">
+    <div class="flex2">
+        <div class="flex4">
+            <table class="table table-hover" style="font-family: Baloo;  ">
+                <thead>
+                    <tr style="font-size: 18px; ">
+                        <th scope="col" >old point ratio</th>
+                        <th scope="col"class='font'>new point ratio </th>
+                        <th scope="col">old exchange</th>
+                        <th scope="col">new exhange</th>
+                        <th scope="col">By</th>
+                        <th scope="col">Status</th>
+                    </tr>
+                </thead>
+                <tbody  style="font-size: 15px; color: #8E8C8C;">
+                    
+                    {% for j in err %}
+                     
+                    <tr>
+                        <th scope="row">{{j.Pay_old}} THB ต่อ {{j.Is_old}} point</th>
+                        <td>{{j.Pay_new}} THB ต่อ {{j.Is_new}} point</td>
+                        <td>{{j.Use_old}} point ได้ {{j.discout_old}} THB</td>
+                        <td>{{j.Use_new}}point ได้ {{j.discout_new}}THB</td>
+                        <td >{{j.by}}</td>
+                        <td>{{j.status}}</td>
+                        
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        
+    </div>
+
+    
+    <div class="flex3">
+        <div class="flex5">
+             <a href="/membership_promotion/" class="backbn" style="text-decoration:none; text-align: center;" ><p style="padding-top: 5%">Back</p></a>
+        </div>
+     
+    </div>
+     
+
+</div>
+{% endblock %}

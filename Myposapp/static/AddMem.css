@@ -1,0 +1,67 @@
+.flex-container{
+    display: flex;
+    background-color: rgb(255, 255, 255);
+    height : 100% ;
+    flex-direction:column;
+}
+#tab {
+    display: flex;
+    background-color: rgb(255, 255, 255);
+    width: 100%;
+    height: 12%;
+    /* flex-direction:  column; */
+}
+
+#space {
+    display: flex;
+    background-color: #fdfdfd;
+    width: 100%;
+    height: 76%;
+    flex-direction: row;
+}
+
+#line{
+    display: flex;
+    background-color: #ffffff;
+    width: 100%;
+    height: 17%; 
+}
+
+#doubleline{
+    display: flex;
+    background-color: #ffffff;
+    width: 100%;
+    height: 32%;
+    
+}
+#blank{
+    display: flex;
+    background: rgb(255, 255, 255);
+    width: 2%;
+    height: 100%;
+
+}
+#center{
+    display: flex;
+    background: rgb(108, 238, 119);
+    width: 96%;
+    height: 100%;
+    flex-direction: column;
+    border: solid;
+ 
+}
+#halfleft{
+    display: flex;
+    background-color: #ffffff;
+    width: 50%;
+    height: 100%;
+    justify-content: flex-start;
+}
+
+#halfright{
+    display: flex;
+    background-color: #ffffff;
+    width: 50%;
+    height: 100%;
+    justify-content: flex-end;
+}

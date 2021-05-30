@@ -1,0 +1,464 @@
+{% extends 'layout_admin.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" type="text/css"  href="{% static 'promotion_member.css' %}" > 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<style>
+    .popup .overlay {
+    position:fixed;
+    top:0px;
+    left:0px;
+    width:100vw;
+    height:100vh;
+    background:rgba(0,0,0,0.7);
+    z-index:1;
+    display:none;
+    }
+    
+    .popup .content {
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%) scale(0);
+    background:#fff;
+    width:875px;
+    height:243px;
+    z-index:2;
+    text-align:center;
+    padding:20px;
+    box-sizing:border-box;
+    font-family:"Baloo";
+    border-radius: 50px;
+    }
+    
+    .popup .close-btn {
+    cursor:pointer;
+    position:absolute;
+    right:30px;
+    top:20px;
+    width:30px;
+    height:30px;
+    color:#222;
+    font-size:50px;
+    font-weight:600;
+    line-height:30px;
+    text-align:center;
+    border-radius:50%;
+    }
+    
+    .popup.active .overlay {
+    display:block;
+    }
+    
+    .popup.active .content {
+    transition:all 300ms ease-in-out;
+    transform:translate(-50%,-50%) scale(1);
+    }
+  
+    .bn {
+      background-color: #DEDEDE;
+      color:  #858383;
+      border-width: 1px;
+      width:  80%;
+      height:  85%;
+      border-radius: 50px;
+      font-family:Baloo;
+      font-size:15px;
+      transition-duration: 0.4s;
+      margin-right: 0.5%;
+    }
+    
+    .bn:hover {
+      background-color: #838383;
+      color: white;
+      border: none;
+      width:  80%;
+      height:  85%;
+      border-radius: 50px;
+      box-shadow: 0 5px 5px 0 rgba(153, 153, 153, 0.24),0 5px 5px 0 rgba(153, 153, 153, 0.24);
+      font-family:Baloo;
+      font-size:20px;
+    }
+    #rowbn{
+      display: flex;
+      flex-direction: row;
+      height: 30%;
+      width: 100%;
+      /* background-color: aqua; */
+      margin-top: 4%;
+    }
+  
+  </style>
+
+
+<div class="flex-container">
+    <div class="flex-container2"> 
+        <div style="background-color: white; height: 30%">
+            <form id="form1" method="POST" >
+                {% csrf_token %}  
+            <div style="background-color: white;">
+                <div style="height: 15px;"></div>
+                <lable style = "vertical-align: middle ;font-family:Baloo; font-size: 23px; margin-left: 6%; margin-top: 20px; color : #6EA6E2 ;" >Subscription fee</lable>
+                <div style="background-color: black; height: 2; width: 90%; margin-left: 5%; margin-top: 10 %;"></div>
+            </div>
+            <div style="height: 10px;"></div>
+            <div style="float:left ;  width: 50%; background-color: white; ">
+                <div style="float:left ;  width: 40%; background-color: white; "Align=right>
+                <P style = "vertical-align: middle ;font-family:Baloo; font-size: 15px; margin-top: 15px; margin-right: 10px; color : #588dc5 ;" >Rate  :
+                </div>
+                <div style="float:left ;  width: 45%;  background-color: white; margin-top: 15px; border: solid 1px #767675; ">
+                    <span  style = "margin-left: 45%;  color : #7B8599 ; font-size: 15px; font-family:Baloo;"  type="text"  /> {{rate.new_rate}}
+                    </div>
+                    <div style="float:left ;  width: 6%; background-color: #767675; margin-top: 15px; ">
+                        <span style = "margin-left: 15%;  color : white ; font-size: 16px; font-family:Baloo;"  type="text" /> THB
+                        </div>    
+                   
+                </div>
+                <div style="float:left ; width: 30%; background-color: white; ">   
+                    <div style="float:left ;  width: 15%; background-color: white; "Align=right>
+                        <P style = "vertical-align: middle ;font-family:Baloo; font-size: 15px; margin-top: 15px; margin-right: 10px; color : #588dc5 ;" >Date  :
+                        </div>
+                        <div style="float:left ;  width: 65%;  background-color: white; margin-top: 15px; border: solid 1px #767675; ">
+                            <span  style = "margin-left: 14%;  color : #7B8599 ; font-size: 15px; font-family:Baloo;"  type="text" /> {{rate.start_date}} - {{rate.end_date}}
+                            </div>
+                            
+                </div>
+                <div style="float:left ; width: 20%;  background-color: white; ">  
+                     
+                    
+                    <a class="btn btn-danger" onclick="togglePopup_Money()" style = "vertical-align: middle ; margin-top: 5px; margin-left:40%;border-radius: 15px; width:40%; background-color : rgb(155, 53, 53) ; color: white; border:none; font-size:14px;font-weight: bold;" "  role="button">setting</a>
+                    
+
+
+
+                    <div class="popup" id="popup-money">
+                        <div class="overlay"></div>
+                        <div class="content"  style="background-color:white; border-radius : 50px; height: 50%; width:35%;" >
+                            <div class="close-btn" onclick="togglePopup_Money()">&times;</div>
+                               <div style=" height: 5%;"></div>
+                               <div style=" height: 20%;">
+                                <span style="font-family:Baloo;color : #87B4E4 ; font-size : 18px ; ">Setting  New  Subscription fee</span>
+                            </div>
+                            
+                            <div style="height : 10px ;"></div>
+                            
+                            <div style="background-color : white ; height : 2% ; "></div>
+                            
+                            <CENTER>
+                                <P style = "vertical-align: middle ;font-family:Baloo; font-size: 13px; margin-top: 15px; color : #588dc5 ;" >NewRate  :
+                                    <input style = " border: none; margin-left: 1.2%; background: #E4E4E4 ; color : #7B8599 ; font-size: 13px; "  type="text" name="newrate" size="20" maxlength="200"  placeholder="    insert name promotion"/> 
+                                    <input style = " border: none; margin-left: 1.2%; background: #E4E4E4 ; color : #7B8599 ; font-size: 13px; "  type="text" name="oldrate" size="20" maxlength="200"  value="100" hidden/>
+                                    <P style = " position:static; vertical-align: middle ;font-family:Baloo; font-size: 13px; margin-top: 15px; color : #588dc5 ;" >Start point :
+                                        <input style = " border: none; background: #E4E4E4 ; color : #7B8599 ; font-size: 13px; "  type="text" name="startpoint" size="20" maxlength="200"  placeholder="    insert name promotion"/>
+                                
+                                    
+                                </CENTER>
+                            
+                            <div style=" height:190px;">
+
+                                <div class="checkbox-card">
+                                    <div class="checkbox" style="" >
+                                        <label style="vertical-align: middle ;font-family:Baloo; font-size: 13px; color : #8E8C8C;">
+                                            <input type="checkbox" class="checkme" >Condition
+                                        </label>
+                                    </div>
+                                    <div class="passport-box" >
+                                        <P style = "font-family:Baloo; font-size: 13px; color : #8E8C8C ;" >Start  Date  :
+                                            <input type="date"  name="start_date_rate"  style=" height: 17px; margin-left: 1.2%; background-color : white;  ">
+                                        
+                                            <P style = "font-family:Baloo; font-size: 13px; color : #8E8C8C ;" >End  Date  :
+                                                <input type="date"  name="end_date_rate"  style=" height: 17px; margin-left: 3%; background-color : white;  ">
+
+                                    </div>
+                                    <button onclick="submitForms()" id="submit" type="submit" class="btn btn-danger" style = " margin-left:0%; font-family:Baloo; font-size: 15px;" href="/membership_promotion/" role="button">ssummit</button>
+                                    <script src="{% static 'jquery-latest.min.js' %}"></script>
+                                    <script>
+                                        $(function(){
+                                            $(".checkme").click(function(event) {
+                                                var x = $(this).is(':checked');
+                                                if (x == false) {
+                                                    
+                                                    $(this).parents(".checkbox-card").find('.passport-box').hide();
+                                                    
+                                                }
+                                                else{
+                                                    $(this).parents(".checkbox-card").find('.passport-box').show();
+                                                    
+                                                }
+                                            });
+                                        })
+                                    </script>
+                                    <script>
+                    
+                                
+                                       submitForms = function(){
+                                        document.getElementById("form1").submit();
+                                        
+                                        }
+                                    
+                                
+                                    </script>
+
+                                    
+                                </div> 
+                            </div>
+                        </div>
+                    </div>
+                    
+
+        
+        <script>
+        function togglePopup_Money(){
+        document.getElementById("popup-money").classList.toggle("active");
+        }
+        </script>
+                   
+              
+                </form>          
+
+                </div>
+
+                <button  class="btn btn-success " onclick = "location.href='/membership_promotion/rate_history/'" style=" margin-left:88%;;border-radius: 15px; width:8%; background-color : green; border:none; font-size:13px;font-weight: bold;" >History</button>    
+                    <lable style = "vertical-align: middle ;font-family:Baloo; font-size: 23px; margin-left: 6%; color : #6EA6E2 ;" >Point</lable>
+ 
+            </div>
+        
+        <div style="background-color:white ; height: 27%;">
+            <div style="height: 7px;"></div>
+            <div style="background-color: black; height: 2; width: 90%; margin-left: 5%;"></div>
+
+            <div style="float:left ;  width: 50%; background-color: white; ">
+                <div style="float:left ;  width: 40%; background-color: white; "Align=right>
+                    <P style = "vertical-align: middle ;font-family:Baloo; font-size: 15px; margin-top: 15px; margin-right: 10px; color : #588dc5 ;" >Pay  :
+                    </div>
+                    <div style="float:left ;  width: 45%;  background-color: white; margin-top: 15px; border: solid 1px #767675; ">
+                        <span  style = "margin-left: 45%;  color : #7B8599 ; font-size: 15px; font-family:Baloo;"  type="text" /> {{point.Pay_new}}
+                        
+                        </div>
+                        <div style="float:left ;  width: 6%; background-color: #767675; margin-top: 15px; ">
+                            <span style = "margin-left: 15%;  color : white ; font-size: 16px; font-family:Baloo;"  type="text" /> THB
+                            </div>
+                </div>
+                <div style="float:left ; width: 30%; background-color: white; ">   
+                    <div style="float:left ;  width: 15%; background-color: white; "Align=right>
+                        <P style = "vertical-align: middle ;font-family:Baloo; font-size: 15px; margin-top: 15px; margin-right: 10px; color : #588dc5 ;" >=
+                        </div>
+                        <div style="float:left ;  width: 72%;  background-color: white; margin-top: 15px; border: solid 1px #767675; ">
+                            <span  style = "margin-left: 45%;  color : #7B8599 ; font-size: 15px; font-family:Baloo;"  type="text" /> {{point.Is_new}}
+                            
+                            </div>
+                            <div style="float:left ;  width: 13%; background-color: #767675; margin-top: 15px; ">
+                                <span style = "margin-left: 15%;  color : white ; font-size: 16px; font-family:Baloo;"  type="text" /> point
+                                </div>
+                </div>
+                <div style="float:left ; width: 20%;  background-color: white; ">  
+                    
+                    
+                    <a  class="btn btn-success btn-lg" href="/membership_promotion/point_set/"  style=" vertical-align: middle ; margin-top: 5px; margin-left:40%;border-radius: 15px; width:40%; background-color :  rgb(155, 53, 53) ; color: white; border:none; font-size:13px;font-weight: bold;" >Setting</a>
+
+                </div>
+
+                <div></div>
+
+                <div style="float:left ;  width: 50%; background-color: white; ">
+                    
+                    <div style="float:left ;  width: 40%; background-color: white; "Align=right>
+                        <P style = "vertical-align: middle ;font-family:Baloo; font-size: 15px; margin-top: 15px; margin-right: 10px; color : #588dc5 ;" >Use  :
+                        </div>
+                        <div style="float:left ;  width: 45%;  background-color: white; margin-top: 15px; border: solid 1px #767675; ">
+                            <span  style = "margin-left: 45%;  color : #7B8599 ; font-size: 15px; font-family:Baloo;"   type="text" /> {{point.Use_new}}
+                            
+                            </div>
+                            <div style="float:left ;  width: 8%; background-color: #767675; margin-top: 15px; ">
+                                <span style = "margin-left: 15%;  color : white ; font-size: 16px; font-family:Baloo;"  type="text" /> point
+                                </div>
+                    </div>
+                    <div style="float:left ; width: 30%; background-color: white; ">   
+                        <div style="float:left ;  width: 15%; background-color: white; "Align=right>
+                            <P style = "vertical-align: middle ;font-family:Baloo; font-size: 13px; margin-top: 15px; margin-right: 10px; color : #588dc5 ;" >Discount
+                            </div>
+                            <div style="float:left ;  width: 75%;  background-color: white; margin-top: 15px; border: solid 1px #767675; ">
+                                <span  style = "margin-left: 45%;  color : #7B8599 ; font-size: 15px; font-family:Baloo;"  value='100' type="text" /> {{point.discout_new}}
+                                
+                                </div>
+                                <div style="float:left ;  width: 10%; background-color: #767675; margin-top: 15px; ">
+                                    <span style = "margin-left: 15%;  color : white ; font-size: 16px; font-family:Baloo;"  type="text" /> THB
+                                    </div>
+                    </div>
+                    <div style="float:left ; width: 20%;  background-color: white; ">  
+                        <button  class="btn btn-success btn-lg" onclick = "location.href='/membership_promotion/point_history/'" style=" vertical-align: middle ; margin-top: 5px; margin-left:40%;border-radius: 15px; width:40%; background-color : green ; color: white; border:none; font-size:13px;font-weight: bold;" >History</button>
+                        <div style="width: 100%; height: 20px; background-color: white;"></div>
+                    </div>
+        
+                    <div style="width: 100%; height: 10px;"></div>
+                    <lable style = "vertical-align: middle ;font-family:Baloo; font-size: 23px; margin-left: 6%; margin-top: 20px; color : #6EA6E2 ;" >Promotion for Member</lable>
+                    <div style="background-color: black; height: 2; width: 90%; margin-left: 5%; margin-top: 10 %;"></div>
+
+                    
+                 
+        </div>
+
+
+
+
+
+
+
+
+        <div style="background-color: white; height: 42%; ">
+            <div style="height: 20px;"></div>
+
+            <div style=" background-color:white; height: 64%; display: flex ; flex-direction:  row;">
+                <div style=" background-color:white; height: 100%; width: 10%;"></div>
+                <div style=" background-color:white; height: 100%; width: 75%; overflow: hidden; overflow-y:scroll; ">
+                    <table class="table table-hover" style="font-family: Baloo;  ">
+                        <thead>
+                            <tr style="font-size: 13px; text-align : center ; color : rgb(78, 78, 78)">
+                                <th scope="col" >Promotion Name</th>
+                                <th scope="col"class='font'>Type</th>
+                                <th scope="col">Discount</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Buy  At  Least</th>
+                                <th scope="col-sm"> </th>
+                            </tr>
+                        </thead>
+                        <tbody  style="font-size: 12px; color: #8E8C8C;text-align : center">
+                            {% for jd in err %} 
+                            <tr>
+                                <th scope="row">{{jd.name}}</th>
+                                <td>{{jd.types}}</td>
+                                <td>{{jd.value}}</td>
+                                <td>{{jd.start_date}} - {{jd.end_date}}</td>
+                                <td>{{jd.atlest}}</td>
+                                <td ><button class="btn btn-danger" style="font-size: 10px; color: white;" type="button">delete</button></td>
+
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div style=" background-color:white; height: 100%; width: 15%;">
+                    <a class="btn btn-danger" onclick="togglePopup_Money2()" style = "margin-left: 45%; font-family:Baloo; font-size: 15px; "  role="button">+  Add</a>
+                    
+
+
+
+                    <div class="popup" id="popup-money2">
+                        <div class="overlay"></div>
+                        <div class="content"  style="background-color:white; border-radius : 50px; height: 20%; width:35%;" >
+                            <div class="close-btn" onclick="togglePopup_Money2()">&times;</div>
+                               <div style=" height: 5%;"></div>
+                               <div style=" height: 20%;">
+                                <span style="font-weight: bold; font-family:Baloo; text-align:center;font-size:25px; color : #4F7BBC;">Choose
+                                    <span style="font-family:Baloo; font-size: 15px; color: black;">type for promotion</span>
+                                </span>
+                                <div style="background-color: black; height: 1px; "></div>
+                                <div style="height:80%;"></div>
+                                <button  class="btn btn-success btn-lg" onclick="location.href='/membership_promotion/addpromotion/discount'" style=" border-radius: 15px; width: 35%; margin-right: 20px; background-color : #DEDEDE; border:none; font-size:13px;font-weight: bold; font-family:Baloo; color: #8E8C8C;" >Discount for Member</button>  
+                                <button  class="btn btn-success btn-lg" onclick="location.href='/membership_promotion/addpromotion/discount2'" style=" border-radius: 15px; width: 35%; margin-left: 20px; background-color : #DEDEDE; border:none; font-size:13px;font-weight: bold; font-family:Baloo; color: #8E8C8C;" >Brithday special</button>  
+                            </div>
+                        </div>
+                    </div>
+                    
+
+        
+        <script>
+        function togglePopup_Money2(){
+        document.getElementById("popup-money2").classList.toggle("active");
+        }
+        </script>
+                </div>
+            
+            </div>
+
+            <div style=" background-color:white; height: 15%;">
+                <a class="btn btn-danger" style = "margin-left: 91.7%; font-family:Baloo; font-size: 15px; " href="/membership_promotion/history" role="button">History</a>
+            </div>
+
+
+
+
+    
+        </div>
+  
+  
+        
+</div>
+
+</div>
+
+<script>
+    $(document).ready(function(){
+        /* by default hide all radio_content div elements except first element */
+        $(".content .radio_content").hide();
+        $(".content .radio_content:first-child").show();
+
+        /* when any radio element is clicked, Get the attribute value of that clicked radio element and show the radio_content div element which matches the attribute value and hide the remaining tab content div elements */
+        $(".radio_wrap").click(function(){
+          var current_raido = $(this).attr("data-radio");
+          $(".content .radio_content").hide();
+          $("."+current_raido).show();
+        })
+    });
+</script>
+
+
+
+
+
+
+<style>
+    .popup .overlay {
+    position:fixed;
+    top:0px;
+    left:0px;
+    width:100vw;
+    height:100vh;
+    background:rgba(0,0,0,0.7);
+    z-index:1;
+    display:none;
+    }
+    
+    .popup .content {
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%) scale(0);
+    background:#fff;
+    width:400px;
+    height:450px;
+    z-index:2;
+    text-align:center;
+    padding:20px;
+    box-sizing:border-box;
+    font-family:"Open Sans",sans-serif;
+    }
+    
+    .popup .close-btn {
+    cursor:pointer;
+    position:absolute;
+    right:20px;
+    top:20px;
+    width:30px;
+    height:30px;
+    background:#222;
+    color:#fff;
+    font-size:25px;
+    font-weight:600;
+    line-height:30px;
+    text-align:center;
+    border-radius:50%;
+    }
+    
+    .popup.active .overlay {
+    display:block;
+    }
+    
+    .popup.active .content {
+    transition:all 300ms ease-in-out;
+    transform:translate(-50%,-50%) scale(1);
+    }
+</style>
+{% endblock %}

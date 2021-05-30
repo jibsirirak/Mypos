@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="../static/styles.css">
+<head>
+	<meta charset="UTF-8">
+	<title>Notification Alert Messages</title>
+	<link rel="stylesheet" href="styles.css">
+	<script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+
+</head>
+<body>
+	<div class="wrapper">
+			<div class="btn_grp">
+				<div class="btn btn_error">Error</div>
+			</div>
+	</div>
+
+	<div class="alert_wrapper">
+					<div class="alert_item alert_error">
+						<div class="icon data_icon">
+							<i class="fas fa-bomb"></i>
+						</div>
+						<div class="data">
+							<p class="title"><span>Error:</span>
+								User action error
+							</p>
+							<p class="sub">Lorem ipsum dolor sit amet.</p>
+						</div>
+						<div class="icon close">
+							<i class="fas fa-times"></i>
+						</div>
+					</div>
+					
+
+				
+
+<script>
+	var btns = document.querySelectorAll(".btn");
+	var alert_wrapper = document.querySelector(".alert_wrapper");
+	var close_btns = document.querySelectorAll(".close");
+// even bt
+	btns.forEach(function(btn, btn_index){
+		btn.addEventListener("click", function(){
+			alert_wrapper.classList.add("active");
+
+			alert_items.forEach(function(alert_item, alert_index){
+				if(btn_index == alert_index){
+					alert_item.style.top = "50%";
+				}
+				else{
+					alert_item.style.top = "-100%";
+				}
+			})
+		})
+	})
+
+		// btn.addEventListener("click", function(){
+		// 	alert_wrapper.classList.add("active");
+
+		// 	alert_items.forEach(function(alert_item, alert_index){
+		// 		if(btn_index == alert_index){
+		// 			alert_item.style.top = "50%";
+		// 		}
+		// 		else{
+		// 			alert_item.style.top = "-100%";
+		// 		}
+		// 	})
+		// })
+
+// even x
+	close_btns.forEach(function(close, close_index){
+		close.addEventListener("click", function(){
+			alert_wrapper.classList.remove("active");
+
+			alert_items.forEach(function(alert_item, alert_index){
+				alert_item.style.top = "-100%";
+			})
+		})
+	})
+
+
+</script>
+
+</body>
+</html>

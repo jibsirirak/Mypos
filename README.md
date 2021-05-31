@@ -24,5 +24,5 @@ List the ready features here:
 
 
 ## Screenshots
-![image](https://ibb.co/q5mxCQZ.jpg)
+![image](https://ibb.co/q5mxCQZ)
 

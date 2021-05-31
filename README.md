@@ -25,4 +25,11 @@ List the ready features here:
 
 ## Screenshots
 ![Login](https://user-images.githubusercontent.com/78865194/120125698-007f9e80-c1e4-11eb-9ccc-5bf81c6dd511.PNG)
+![product](https://user-images.githubusercontent.com/78865194/120125754-39b80e80-c1e4-11eb-8c4d-ab0f5a0e8edb.PNG)
+![sale report](https://user-images.githubusercontent.com/78865194/120125775-46d4fd80-c1e4-11eb-907c-93a14688330d.PNG)
+![sales his](https://user-images.githubusercontent.com/78865194/120125779-489ec100-c1e4-11eb-9ac2-06a1a629a0f6.PNG)
+![Daily](https://user-images.githubusercontent.com/78865194/120125780-489ec100-c1e4-11eb-8d4b-6ca89892c237.PNG)
+![document](https://user-images.githubusercontent.com/78865194/120125782-49375780-c1e4-11eb-971e-c99127083d11.PNG)
+![membership](https://user-images.githubusercontent.com/78865194/120125784-49cfee00-c1e4-11eb-934c-c877f8f63594.PNG)
+![promotion](https://user-images.githubusercontent.com/78865194/120125785-49cfee00-c1e4-11eb-8068-55cf5e4e40e9.PNG)
 

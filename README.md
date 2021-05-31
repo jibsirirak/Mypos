@@ -24,5 +24,5 @@ List the ready features here:
 
 
 ## Screenshots
-![Example screenshot](./img/screenshot.png)
-<!-- If you have screenshots you'd like to share, include them here. -->
+https://drive.google.com/file/d/1Kw6XNZdTOCkJvV000yOdqKM8Y3LtIP-Y/view?usp=sharing
+
